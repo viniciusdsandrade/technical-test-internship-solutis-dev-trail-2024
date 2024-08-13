@@ -80,14 +80,16 @@ public class ListaDeExercicio01 {
 
         /*
         10. Faça um programa com 3 variáveis do tipo inteiro (int) tal que a primeira tenha o valor de 6, a segunda o valor 4 e a terceira receba o valor da divisão da
-        primeira pela segunda. Exiba o valor da terceira variável. Faça uma análise do
-        resultado.
+        primeira pela segunda.
+        Exiba o valor da terceira variável.
+        Faça uma análise do resultado.
          */
         exercicio10();
 
         /*
         11. Utilize a estrutura if para fazer um programa que retorne o nome de um
-        produto a partir do código do mesmo. Considere os seguintes códigos:
+        produto a partir do código do mesmo.
+        Considere os seguintes códigos:
 
         001 ? Parafuso;
         002 ? Porca;
@@ -146,11 +148,21 @@ public class ListaDeExercicio01 {
         System.out.print("Digite um número inteiro: ");
         numero = scanner.nextInt();
 
-        if (numero % 2 == 0)
+        if (numero % 2 == 0) System.out.println("O número " + numero + " é par.");
+        else System.out.println("O número " + numero + " é ímpar.");
+
+        // Outra forma de resolver o exercício 8 é utilizando uma função isPar
+        /*
+        if (isPar(numero))
             System.out.println("O número " + numero + " é par.");
         else
             System.out.println("O número " + numero + " é ímpar.");
+         */
+        scanner.close();
+    }
 
+    public static boolean isPar(int numero) {
+        return numero % 2 == 0;
     }
 
     private static void exercicio09() {
@@ -159,6 +171,13 @@ public class ListaDeExercicio01 {
         for (int i = 0; i <= 10; i++) {
             System.out.println("O quadrado de " + i + " é " + (i * i));
         }
+
+        // Outra forma de resolver o exercício 9 é utilizando a função Math.pow
+        /*
+        for (int i = 0; i <= 10; i++) {
+            System.out.println("O quadrado de " + i + " é " + Math.pow(i, 2));
+         }
+         */
     }
 
     private static void exercicio10() {
@@ -167,14 +186,12 @@ public class ListaDeExercicio01 {
         int c = a / b;
 
         System.out.println("O valor de c é: " + c);
-
-        System.out.println("O resultado de 6 / 4 é 1,5, mas como a variável c é do tipo inteiro, o resultado é truncado para 1.");
+        System.out.println("O resultado de 6 / 4 é 1,5, mas como a variável c é do tipo inteiro, " +
+                "o resultado é truncado para 1.");
     }
 
     private static void exercicio11() {
         Scanner scanner = new Scanner(System.in);
-        int codigo;
-
         System.out.println("Exercício 11");
 
         // Solicita ao usuário que insira o código do produto
@@ -198,11 +215,11 @@ public class ListaDeExercicio01 {
             case "001" -> System.out.println("Produto: Parafuso");
             case "002" -> System.out.println("Produto: Porca");
             case "003" -> System.out.println("Produto: Prego");
-            default -> System.out.println("Código inválido. Por favor, insira um código válido (001, 002, 003).");
+            default -> System.out.println("Código inválido.
+            Por favor, insira um código válido (001, 002, 003).");
         }
          */
 
-        // Fecha o objeto Scanner
         scanner.close();
     }
 
