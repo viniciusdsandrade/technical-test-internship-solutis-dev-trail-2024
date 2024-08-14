@@ -1,6 +1,6 @@
 package conjunto_1_sequenciais_entrada_calculo_e_saida;
 
-public class exercicio_06 {
+public class Exercicio_06 {
 
     /*
     6. Calcule e exiba área ocupada por um círculo cujo raio mede 5 metros. A área de um círculo

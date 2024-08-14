@@ -2,7 +2,7 @@ package conjunto_2_estruturas_condicionais;
 
 import java.util.Scanner;
 
-public class exercicio_08 {
+public class Exercicio_08 {
     /*
     8. Transforme um número Racional (formado por numerador e denominador) para um número
     Real. Antes de dividir, verifique se o denominador é diferente de zero. Emita uma
@@ -25,14 +25,13 @@ public class exercicio_08 {
 
     public static void main(String[] args) {
         System.out.println("Exercício 08");
-        Scanner scanner = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
 
-        // Solicita ao usuário para inserir o numerador e o denominador
         System.out.print("Digite o numerador: ");
-        int numerador = scanner.nextInt();
+        int numerador = entrada.nextInt();
 
         System.out.print("Digite o denominador: ");
-        int denominador = scanner.nextInt();
+        int denominador = entrada.nextInt();
 
         // Realiza a transformação e exibe o resultado
         double resultado = transformarRacionalParaReal(numerador, denominador);
@@ -40,6 +39,8 @@ public class exercicio_08 {
         if (!Double.isNaN(resultado)) {
             System.out.printf("O número real é: %.4f%n", resultado);
         }
+
+        entrada.close();
     }
 
     public static double transformarRacionalParaReal(int numerador, int denominador) {

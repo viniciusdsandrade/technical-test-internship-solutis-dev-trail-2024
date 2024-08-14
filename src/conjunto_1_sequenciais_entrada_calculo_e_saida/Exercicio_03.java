@@ -2,7 +2,7 @@ package conjunto_1_sequenciais_entrada_calculo_e_saida;
 
 import java.util.Scanner;
 
-public class exercicio_03 {
+public class Exercicio_03 {
     /*
     3. Solicite a quantidade de homens e de mulheres de uma turma da faculdade. Em seguida
     calcule e exiba o percentual (separadamente) de homens e mulheres desta turma.

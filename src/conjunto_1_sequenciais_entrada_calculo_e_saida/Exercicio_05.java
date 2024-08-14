@@ -2,7 +2,7 @@ package conjunto_1_sequenciais_entrada_calculo_e_saida;
 
 import java.util.Scanner;
 
-public class exercicio_05 {
+public class Exercicio_05 {
 
     /*
     5. Calcule e exiba o valor final de uma dívida.
