@@ -8,19 +8,6 @@ import static enums.tipoAnimal.AnimalTerreste.LEAO;
 public class Leao extends AnimalTerresteAB {
 
     public Leao(HabitatTerrestre habitatTerrestre,
-                float comidaIngerida,
-                float distanciaPercorrida,
-                int horasDormidas) {
-
-        super(habitatTerrestre,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        this.animalTerreste = LEAO;
-    }
-
-    public Leao(HabitatTerrestre habitatTerrestre,
                 String nome,
                 int idade,
                 int qtdMembros,
@@ -34,6 +21,20 @@ public class Leao extends AnimalTerresteAB {
                 idade,
                 qtdMembros,
                 velocidadeMaxima,
+                comidaIngerida,
+                distanciaPercorrida,
+                horasDormidas);
+
+        this.animalTerreste = LEAO;
+    }
+
+    // Construtor simplificado
+    public Leao(HabitatTerrestre habitatTerrestre,
+                float comidaIngerida,
+                float distanciaPercorrida,
+                int horasDormidas) {
+
+        super(habitatTerrestre,
                 comidaIngerida,
                 distanciaPercorrida,
                 horasDormidas);

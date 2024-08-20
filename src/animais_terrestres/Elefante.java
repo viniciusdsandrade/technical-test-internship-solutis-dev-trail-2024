@@ -8,19 +8,6 @@ import static enums.tipoAnimal.AnimalTerreste.ELEFANTE;
 public class Elefante extends AnimalTerresteAB {
 
     public Elefante(HabitatTerrestre habitatTerrestre,
-                    float comidaIngerida,
-                    float distanciaPercorrida,
-                    int horasDormidas) {
-
-        super(habitatTerrestre,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        this.animalTerreste = ELEFANTE;
-    }
-
-    public Elefante(HabitatTerrestre habitatTerrestre,
                     String nome,
                     int idade,
                     int qtdMembros,
@@ -34,6 +21,20 @@ public class Elefante extends AnimalTerresteAB {
                 idade,
                 qtdMembros,
                 velocidadeMaxima,
+                comidaIngerida,
+                distanciaPercorrida,
+                horasDormidas);
+
+        this.animalTerreste = ELEFANTE;
+    }
+
+    // Construtor simplificado
+    public Elefante(HabitatTerrestre habitatTerrestre,
+                    float comidaIngerida,
+                    float distanciaPercorrida,
+                    int horasDormidas) {
+
+        super(habitatTerrestre,
                 comidaIngerida,
                 distanciaPercorrida,
                 horasDormidas);

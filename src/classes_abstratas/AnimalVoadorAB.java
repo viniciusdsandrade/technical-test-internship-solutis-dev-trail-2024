@@ -5,7 +5,7 @@ import enums.tipoAnimal.AnimalAereo;
 
 import java.util.Objects;
 
-public abstract class AnimalAereoAB implements AnimalIF {
+public abstract class AnimalVoadorAB implements AnimalIF {
 
     protected HabitatsAereos habitatAereo;
     protected AnimalAereo animalAereo;
@@ -18,18 +18,18 @@ public abstract class AnimalAereoAB implements AnimalIF {
     protected float distanciaPercorrida;
     protected int horasDormidas;
 
-    public AnimalAereoAB() {
+    public AnimalVoadorAB() {
     }
 
-    public AnimalAereoAB(HabitatsAereos habitatAereo,
-                         String nome,
-                         int idade,
-                         float velocidadeMaxima,
-                         float envergadura,
-                         float altitudeMaxima,
-                         float comidaIngerida,
-                         float distanciaPercorrida,
-                         int horasDormidas) {
+    public AnimalVoadorAB(HabitatsAereos habitatAereo,
+                          String nome,
+                          int idade,
+                          float velocidadeMaxima,
+                          float envergadura,
+                          float altitudeMaxima,
+                          float comidaIngerida,
+                          float distanciaPercorrida,
+                          int horasDormidas) {
         this.habitatAereo = habitatAereo;
         this.nome = nome;
         this.idade = idade;
@@ -41,10 +41,10 @@ public abstract class AnimalAereoAB implements AnimalIF {
         this.horasDormidas = horasDormidas;
     }
 
-    public AnimalAereoAB(HabitatsAereos habitatAereo,
-                         float comidaIngerida,
-                         float distanciaPercorrida,
-                         int horasDormidas) {
+    public AnimalVoadorAB(HabitatsAereos habitatAereo,
+                          float comidaIngerida,
+                          float distanciaPercorrida,
+                          int horasDormidas) {
         this.habitatAereo = habitatAereo;
         this.comidaIngerida = comidaIngerida;
         this.distanciaPercorrida = distanciaPercorrida;
@@ -130,7 +130,7 @@ public abstract class AnimalAereoAB implements AnimalIF {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof AnimalAereoAB that)) return false;
+        if (!(o instanceof AnimalVoadorAB that)) return false;
 
         return Objects.equals(this.animalAereo, that.animalAereo) &&
                 Objects.equals(this.habitatAereo, that.habitatAereo) &&

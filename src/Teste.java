@@ -1,5 +1,5 @@
-import animais_aereos.AraraAzul;
-import animais_aquaticos.PeixePalhaco;
+import animais_aereos.Pombo;
+import animais_aquaticos.Peixe;
 import animais_terrestres.Cachorro;
 import animais_terrestres.Elefante;
 import animais_terrestres.Gato;
@@ -12,18 +12,18 @@ import static enums.habitats.HabitatsAereos.FLORESTAS;
 public class Teste {
     public static void main(String[] args) {
         // Teste para Arara Azul
-        AraraAzul arara = new AraraAzul(FLORESTAS, "Arara", 5, 40.5f, 1.2f, 3000f, 0.5f, 50.0f, 8);
+        Pombo arara = new Pombo(FLORESTAS, "Arara", 5, 40.5f, 1.2f, 3000f, 0.5f, 50.0f, 8);
         System.out.println(arara);
         arara.comer(0.3f);
         arara.moverse(15.0f);
         arara.dormir(6);
 
         // Teste para Peixe-palhaço
-        PeixePalhaco peixePalhaco = new PeixePalhaco(RECIFES_DE_CORAIS, "Nemo", 2, 10, 0.2f, 20, 5);
-        System.out.println(peixePalhaco);
-        peixePalhaco.comer(0.1f);
-        peixePalhaco.moverse(5.0f);
-        peixePalhaco.dormir(4);
+        Peixe peixe = new Peixe(RECIFES_DE_CORAIS, "Nemo", 2, 10, 0.2f, 20, 5);
+        System.out.println(peixe);
+        peixe.comer(0.1f);
+        peixe.moverse(5.0f);
+        peixe.dormir(4);
 
         // Teste para Cachorro
         Cachorro cachorro = new Cachorro(CAMPO_CULTIVO, "Rex", 3, 4, 25.0f, 1.0f, 10.0f, 12);

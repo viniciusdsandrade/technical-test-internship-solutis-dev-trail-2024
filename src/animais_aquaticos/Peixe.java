@@ -1,19 +1,19 @@
 package animais_aquaticos;
 
-import classes_abstratas.AnimalAquaticoAB;
+import classes_abstratas.AnimalMarinhoAB;
 import enums.habitats.HabitatAquatico;
 
 import static enums.tipoAnimal.AnimalAquatico.PEIXE_PALHACO;
 
-public class PeixePalhaco extends AnimalAquaticoAB {
+public class Peixe extends AnimalMarinhoAB {
 
-    public PeixePalhaco(HabitatAquatico habitatAquatico,
-                        String nome,
-                        int idade,
-                        float profundidadeMaxima,
-                        float comidaIngerida,
-                        float distanciaPercorrida,
-                        int horasDormidas) {
+    public Peixe(HabitatAquatico habitatAquatico,
+                 String nome,
+                 int idade,
+                 float profundidadeMaxima,
+                 float comidaIngerida,
+                 float distanciaPercorrida,
+                 int horasDormidas) {
 
         super(habitatAquatico,
                 nome,
@@ -26,10 +26,11 @@ public class PeixePalhaco extends AnimalAquaticoAB {
         animalAquatico = PEIXE_PALHACO;
     }
 
-    public PeixePalhaco(HabitatAquatico habitatAquatico,
-                        float comidaIngerida,
-                        float distanciaPercorrida,
-                        int horasDormidas) {
+    // Construtor simplificado
+    public Peixe(HabitatAquatico habitatAquatico,
+                 float comidaIngerida,
+                 float distanciaPercorrida,
+                 int horasDormidas) {
 
         super(habitatAquatico,
                 comidaIngerida,
@@ -70,5 +71,4 @@ public class PeixePalhaco extends AnimalAquaticoAB {
                 "  \"horasDormidas\": " + horasDormidas + "\n" +
                 "}";
     }
-
 }

@@ -1,21 +1,21 @@
 package animais_aereos;
 
-import classes_abstratas.AnimalAereoAB;
+import classes_abstratas.AnimalVoadorAB;
 import enums.habitats.HabitatsAereos;
 
 import static enums.tipoAnimal.AnimalAereo.ARARA_AZUL;
 
-public class AraraAzul extends AnimalAereoAB {
+public class Pombo extends AnimalVoadorAB {
 
-    public AraraAzul(HabitatsAereos habitatsAereos,
-                     String nome,
-                     int idade,
-                     float velocidadeMaxima,
-                     float envergadura,
-                     float altitudeMaxima,
-                     float comidaIngerida,
-                     float distanciaPercorrida,
-                     int horasDormidas) {
+    public Pombo(HabitatsAereos habitatsAereos,
+                 String nome,
+                 int idade,
+                 float velocidadeMaxima,
+                 float envergadura,
+                 float altitudeMaxima,
+                 float comidaIngerida,
+                 float distanciaPercorrida,
+                 int horasDormidas) {
 
         super(habitatsAereos,
                 nome,
@@ -30,10 +30,11 @@ public class AraraAzul extends AnimalAereoAB {
         animalAereo = ARARA_AZUL;
     }
 
-    public AraraAzul(HabitatsAereos habitatsAereos,
-                     int comidaIngerida,
-                     float distanciaPercorrida,
-                     int horasDormidas) {
+    // Construtor simplificado
+    public Pombo(HabitatsAereos habitatsAereos,
+                 int comidaIngerida,
+                 float distanciaPercorrida,
+                 int horasDormidas) {
 
         super(habitatsAereos,
                 comidaIngerida,
