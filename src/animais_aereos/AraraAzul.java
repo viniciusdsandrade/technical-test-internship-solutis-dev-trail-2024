@@ -2,14 +2,10 @@ package animais_aereos;
 
 import classes_abstratas.AnimalAereoAB;
 import enums.habitats.HabitatsAereos;
-import enums.tipoAnimal.AnimalAereo;
 
 import static enums.tipoAnimal.AnimalAereo.ARARA_AZUL;
 
 public class AraraAzul extends AnimalAereoAB {
-
-    public AraraAzul() {
-    }
 
     public AraraAzul(HabitatsAereos habitatsAereos,
                      String nome,
@@ -17,7 +13,7 @@ public class AraraAzul extends AnimalAereoAB {
                      float velocidadeMaxima,
                      float envergadura,
                      float altitudeMaxima,
-                     int comidaIngerida,
+                     float comidaIngerida,
                      float distanciaPercorrida,
                      int horasDormidas) {
 
@@ -67,17 +63,17 @@ public class AraraAzul extends AnimalAereoAB {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"animalAereo\":\"" + animalAereo + "\"," +
-                "\"habitatsAereos\":\"" + habitatAereo + "\"," +
-                "\"nome\":\"" + nome + "\"," +
-                "\"idade\":" + idade + "," +
-                "\"velocidadeMaxima\":" + velocidadeMaxima + "," +
-                "\"envergadura\":" + envergadura + "," +
-                "\"altitudeMaxima\":" + altitudeMaxima + "," +
-                "\"comidaIngerida\":" + comidaIngerida + "," +
-                "\"distanciaPercorrida\":" + distanciaPercorrida + "," +
-                "\"horasDormidas\":" + horasDormidas +
-                '}';
+        return "{\n" +
+                "  \"animalAereo\": \"" + animalAereo + "\",\n" +
+                "  \"habitatsAereos\": \"" + habitatAereo + "\",\n" +
+                "  \"nome\": \"" + nome + "\",\n" +
+                "  \"idade\": " + idade + ",\n" +
+                "  \"velocidadeMaxima\": " + velocidadeMaxima + ",\n" +
+                "  \"envergadura\": " + envergadura + ",\n" +
+                "  \"altitudeMaxima\": " + altitudeMaxima + ",\n" +
+                "  \"comidaIngerida\": " + comidaIngerida + ",\n" +
+                "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
+                "  \"horasDormidas\": " + horasDormidas + "\n" +
+                "}";
     }
 }

@@ -10,10 +10,11 @@ public class PeixePalhaco extends AnimalAquaticoAB {
     public PeixePalhaco(HabitatAquatico habitatAquatico,
                         String nome,
                         int idade,
-                        int profundidadeMaxima,
-                        int comidaIngerida,
-                        int distanciaPercorrida,
+                        float profundidadeMaxima,
+                        float comidaIngerida,
+                        float distanciaPercorrida,
                         int horasDormidas) {
+
         super(habitatAquatico,
                 nome,
                 idade,
@@ -26,9 +27,10 @@ public class PeixePalhaco extends AnimalAquaticoAB {
     }
 
     public PeixePalhaco(HabitatAquatico habitatAquatico,
-                        int comidaIngerida,
-                        int distanciaPercorrida,
+                        float comidaIngerida,
+                        float distanciaPercorrida,
                         int horasDormidas) {
+
         super(habitatAquatico,
                 comidaIngerida,
                 distanciaPercorrida,
@@ -57,15 +59,16 @@ public class PeixePalhaco extends AnimalAquaticoAB {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"animalAquatico\":\"" + animalAquatico + "\"," +
-                "\"habitatAquatico\":\"" + habitatAquatico + "\"," +
-                "\"nome\":\"" + nome + "\"," +
-                "\"idade\":" + idade + "," +
-                "\"profundidadeMaxima\":" + profundidadeMaxima + "," +
-                "\"comidaIngerida\":" + comidaIngerida + "," +
-                "\"distanciaPercorrida\":" + distanciaPercorrida + "," +
-                "\"horasDormidas\":" + horasDormidas +
-                '}';
+        return "{\n" +
+                "  \"animalAquatico\": \"" + animalAquatico + "\",\n" +
+                "  \"habitatAquatico\": \"" + habitatAquatico + "\",\n" +
+                "  \"nome\": \"" + nome + "\",\n" +
+                "  \"idade\": " + idade + ",\n" +
+                "  \"profundidadeMaxima\": " + profundidadeMaxima + ",\n" +
+                "  \"comidaIngerida\": " + comidaIngerida + ",\n" +
+                "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
+                "  \"horasDormidas\": " + horasDormidas + "\n" +
+                "}";
     }
+
 }
