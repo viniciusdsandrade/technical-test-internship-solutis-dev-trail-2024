@@ -1,13 +1,24 @@
-package Exercicio06;
+package Exercicio09;
 
+/*
+Adicione a classe funcionário um atributo referente as comissões desenvolvidas no exercício anterior.
+Corrija o metodo renda total de forma que ele some ao valor da renda calculada o adicional da comissão do funcionário.
+ */
 public class Funcionario {
     private static final double RENDA_BASICA = 1000.00;
+
+    private static final double GERENTE_ADICIONAL = 1500.00;
+    private static final double SUPERVISOR_ADICIONAL = 600.00;
+    private static final double VENDEDOR_ADICIONAL = 250.00;
 
     private String nome;
     private int codigoFuncional;
     private NIVEL_ACADEMICO nivelEscolaridade;
     private String nomeInstituicao;
     private double renda;
+    private double comissao;
+    private double rendaBasica;
+    private double rendaTotal;
 
     public Funcionario() {
     }
@@ -21,7 +32,10 @@ public class Funcionario {
         this.codigoFuncional = codigoFuncional;
         this.nivelEscolaridade = nivelEscolaridade;
         this.nomeInstituicao = nomeInstituicao;
-        this.renda = calcularRendaTotal();
+        this.renda = renda;
+        this.rendaBasica = calcularRendaBasicaTotal();
+        this.comissao = calcularComissao();
+        this.rendaTotal = calcularRendaTotal();
     }
 
     public String getNome() {
@@ -42,6 +56,14 @@ public class Funcionario {
 
     public double getRenda() {
         return renda;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public double getRendaTotal() {
+        return rendaTotal;
     }
 
     public void setNomeInstituicao(String nomeInstituicao) {
@@ -85,7 +107,31 @@ public class Funcionario {
 
     // O cálculo da renda total envolve a renda do usuario mais o adicional da renda básica
     public double calcularRendaTotal() {
-        return this.renda + calcularRendaBasicaTotal();
+        return renda + calcularRendaBasicaTotal() + calcularComissao();
+    }
+
+    /*
+    Faça uma hierarquia de Comissões,
+    crie as comissões de Gerente, Vendedor e Supervisor.
+    Cada uma das comissões fornece um adicional ao salário conforme abaixo:
+
+    Gerente: R$1500,00
+    Supervisor: R$600,00
+    Vendedor: R$250,00
+    */
+
+    private double calcularComissao() {
+        this.comissao = 0;
+
+        switch (this) {
+            case Gerente gerente -> this.comissao = GERENTE_ADICIONAL;
+            case Supervisor supervisor -> this.comissao = SUPERVISOR_ADICIONAL;
+            case Vendedor vendedor -> this.comissao = VENDEDOR_ADICIONAL;
+            default -> {
+            }
+        }
+
+        return this.comissao;
     }
 
     @Override
@@ -126,8 +172,10 @@ public class Funcionario {
                 "\"codigoFuncional\": " + codigoFuncional + ",\n" +
                 "\"nivelEscolaridade\": \"" + nivelEscolaridade + "\",\n" +
                 "\"nomeInstituicao\": \"" + nomeInstituicao + "\",\n" +
-                "\"renda\": " + renda + "\n" +
-                "}";
+                "\"renda\": " + renda + ",\n" +
+                "\"rendaBasica\": " + rendaBasica + ",\n" +
+                "\"comissao\": " + comissao + ",\n" +
+                "\"rendaTotal\": " + rendaTotal + "\n" +
+                "}\n";
     }
 }
-
