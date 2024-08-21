@@ -1,8 +1,8 @@
 package Exercicio09;
 
 /*
-Adicione a classe funcionário um atributo referente as comissões desenvolvidas no exercício anterior.
-Corrija o metodo renda total de forma que ele some ao valor da renda calculada o adicional da comissão do funcionário.
+    Adicione a classe funcionário um atributo referente as comissões desenvolvidas no exercício anterior.
+    Corrija o metodo renda total de forma que ele some ao valor da renda calculada o adicional da comissão do funcionário.
  */
 public class Funcionario {
     private static final double RENDA_BASICA = 1000.00;
@@ -168,14 +168,14 @@ public class Funcionario {
     @Override
     public String toString() {
         return "{\n" +
-                "\"nome\": \"" + nome + "\",\n" +
-                "\"codigoFuncional\": " + codigoFuncional + ",\n" +
-                "\"nivelEscolaridade\": \"" + nivelEscolaridade + "\",\n" +
-                "\"nomeInstituicao\": \"" + nomeInstituicao + "\",\n" +
-                "\"renda\": " + renda + ",\n" +
-                "\"rendaBasica\": " + rendaBasica + ",\n" +
-                "\"comissao\": " + comissao + ",\n" +
-                "\"rendaTotal\": " + rendaTotal + "\n" +
+                "\t\"nome\": " + nome + "\",\n" +
+                "\t\"codigoFuncional\": " + codigoFuncional + ",\n" +
+                "\t\"nivelEscolaridade\":  " + nivelEscolaridade + "\",\n" +
+                "\t\"nomeInstituicao\": " + nomeInstituicao + "\",\n" +
+                "\t\"renda\": " + renda + ",\n" +
+                "\t\"rendaBasica\": " + rendaBasica + ",\n" +
+                "\t\"comissao\": " + comissao + ",\n" +
+                "\t\"rendaTotal\": " + rendaTotal + "\n" +
                 "}\n";
     }
 }

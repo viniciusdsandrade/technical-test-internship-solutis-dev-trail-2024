@@ -1,16 +1,15 @@
 package Exercicio07;
 
 import Exercicio06.Funcionario;
-import Exercicio06.NIVEL_ACADEMICO;
 
 import static Exercicio06.NIVEL_ACADEMICO.*;
 
 /*
-Crie um programa que simule uma empresa com 10 funcionários, utilize um array,
-sendo que a escolaridade dos funcionários é distribuída da seguinte forma:
-40% ensino básico, 40% ensino médio e 20% nível superior.
-Calcule os custos da empresa com salários totais e por nível de escolaridade,
-utilize a classe funcionário desenvolvida no exercício anterior.
+    Crie um programa que simule uma empresa com 10 funcionários, utilize um array,
+    sendo que a escolaridade dos funcionários é distribuída da seguinte forma:
+    40% ensino básico, 40% ensino médio e 20% nível superior.
+    Calcule os custos da empresa com salários totais e por nível de escolaridade,
+    utilize a classe funcionário desenvolvida no exercício anterior.
  */
 public class EmpresaTeste {
     public static void main(String[] args) {
