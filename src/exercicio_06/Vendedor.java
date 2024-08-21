@@ -74,4 +74,19 @@ public class Vendedor extends Empregado {
     public double calcularSalario() {
         return super.calcularSalario() + (valorVendas * comissao / 100);
     }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "\"nome\":\"" + getNome() + "\"," +
+                "\"endereco\":\"" + getEndereco() + "\"," +
+                "\"telefone\":\"" + getTelefone() + "\"," +
+                "\"codigoSetor\":" + getCodigoSetor() + "," +
+                "\"salarioBase\":" + getSalarioBase() + "," +
+                "\"imposto\":" + getImposto() + "," +
+                "\"valorVendas\":" + valorVendas + "," +
+                "\"comissao\":" + comissao + "," +
+                "\"salarioTotal\":" + calcularSalario() +
+                "}\n";
+    }
 }

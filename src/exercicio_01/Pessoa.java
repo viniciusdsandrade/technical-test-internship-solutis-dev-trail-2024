@@ -1,16 +1,16 @@
 package exercicio_01;
 
-/*
-    Cria uma Classe Pessoa, contendo os atributos encapsulados,
-    com seus respectivos seletores (getters) e modificadores (setters),
-    e ainda o construtor padrão e pelo menos mais duas opções de construtores
-    conforme sua percepção.
+    /*
+        Cria uma Classe Pessoa, contendo os atributos encapsulados,
+        com seus respectivos seletores (getters) e modificadores (setters),
+        e ainda o construtor padrão e pelo menos mais duas opções de construtores
+        conforme sua percepção.
 
-    Atributos:
-        String nome;
-        String endereço;
-        String telefone;
- */
+        Atributos:
+            String nome;
+            String endereço;
+            String telefone;
+     */
 
 public class Pessoa {
 
@@ -58,5 +58,14 @@ public class Pessoa {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "\"nome\": \"" + nome + "\",\n" +
+                "\"endereco\": \"" + endereco + "\",\n" +
+                "\"telefone\": \"" + telefone + "\"\n" +
+                "}\n";
     }
 }

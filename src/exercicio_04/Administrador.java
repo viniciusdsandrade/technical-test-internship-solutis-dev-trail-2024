@@ -61,4 +61,18 @@ public class Administrador extends Empregado {
     public double calcularSalario() {
         return super.calcularSalario() + ajudaDeCusto;
     }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "\"nome\": \"" + getNome() + "\",\n" +
+                "\"endereco\": \"" + getEndereco() + "\",\n" +
+                "\"telefone\": \"" + getTelefone() + "\",\n" +
+                "\"codigoSetor\": " + getCodigoSetor() + ",\n" +
+                "\"salarioBase\": " + getSalarioBase() + ",\n" +
+                "\"imposto\": " + getImposto() + ",\n" +
+                "\"ajudaDeCusto\": " + ajudaDeCusto + ",\n" +
+                "\"salarioLiquido\": " + calcularSalario() + "\n" +
+                "}\n";
+    }
 }

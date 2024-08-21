@@ -65,4 +65,16 @@ public class Fornecedor extends Pessoa {
     public double obterSaldo() {
         return valorCredito - valorDivida;
     }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "\"nome\": \"" + getNome() + "\",\n" +
+                "\"endereco\": \"" + getEndereco() + "\",\n" +
+                "\"telefone\": \"" + getTelefone() + "\",\n" +
+                "\"valorCredito\": " + valorCredito + ",\n" +
+                "\"valorDivida\": " + valorDivida + ",\n" +
+                "\"saldo\": " + obterSaldo() + "\n" +
+                "}";
+    }
 }

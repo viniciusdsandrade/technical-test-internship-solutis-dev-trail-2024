@@ -78,4 +78,17 @@ public class Empregado extends Pessoa {
     public double calcularSalario() {
         return salarioBase - (salarioBase * imposto / 100);
     }
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "\"nome\": \"" + getNome() + "\",\n" +
+                "\"endereco\": \"" + getEndereco() + "\",\n" +
+                "\"telefone\": \"" + getTelefone() + "\",\n" +
+                "\"codigoSetor\": " + codigoSetor + ",\n" +
+                "\"salarioBase\": " + salarioBase + ",\n" +
+                "\"imposto\": " + imposto + ",\n" +
+                "\"salarioLiquido\": " + calcularSalario() + "\n" +
+                "}\n";
+    }
 }
