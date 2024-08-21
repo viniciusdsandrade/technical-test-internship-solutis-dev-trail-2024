@@ -1,6 +1,6 @@
 package Exercicio05;
 
-class Funcionario {
+public class Funcionario {
     private String nome;
     private int codigoFuncional;
     private NIVEL_ACADEMICO nivelEscolaridade;
@@ -18,8 +18,6 @@ class Funcionario {
         this.nivelEscolaridade = nivelEscolaridade;
         this.nomeInstituicao = nomeInstituicao;
     }
-
-    // Getters e Setters
 
     public String getNome() {
         return nome;
@@ -60,14 +58,7 @@ class Funcionario {
                 "\"codigoFuncional\": " + codigoFuncional + ",\n" +
                 "\"nivelEscolaridade\": \"" + nivelEscolaridade + "\",\n" +
                 "\"nomeInstituicao\": \"" + nomeInstituicao + "\"\n" +
-                "}";
+                "}\n";
     }
 }
 
-enum NIVEL_ACADEMICO {
-    SEM_ESTUDO,
-    ENSINO_FUNDAMENTAL_1,
-    ENSINO_FUNDAMENTAL_2,
-    ENSINO_MEDIO,
-    ENSINO_SUPERIOR
-}
