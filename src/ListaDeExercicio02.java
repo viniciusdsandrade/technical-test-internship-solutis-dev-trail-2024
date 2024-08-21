@@ -337,15 +337,10 @@ public class ListaDeExercicio02 {
     }
 
     public static void exercicio12() {
-        // Inicializa o Scanner para receber a entrada do usuário
         Scanner scanner = new Scanner(System.in);
-
-        // Variáveis para armazenar os valores de quilômetros e litros inseridos,
-        // além de variáveis acumuladoras para os totais de quilômetros e litros.
         int km, litros, totalKm = 0, totalLitros = 0;
         double consumo;
 
-        // Saudação inicial e explicação do que o programa faz
         System.out.println("Bem-vindo ao monitor de consumo de combustível!");
         System.out.println("Por favor, insira os dados de cada tanque cheio.");
         System.out.println("Quando terminar, digite '0' para sair e visualizar o resumo.");
@@ -376,14 +371,12 @@ public class ListaDeExercicio02 {
             // Calcula o consumo em quilômetros por litro (km/l).
             consumo = (double) km / litros;
 
-            // Exibe o consumo do tanque atual.
             System.out.println("Consumo do tanque atual: " + String.format("%.2f", consumo) + " km/l.");
 
             // Atualiza os totais acumulados de quilômetros e litros.
             totalKm += km;
             totalLitros += litros;
 
-            // Informa que os dados do tanque foram registrados com sucesso.
             System.out.println("Dados do tanque registrados com sucesso!\n");
         }
 
@@ -409,5 +402,4 @@ public class ListaDeExercicio02 {
         // Fecha o scanner para liberar recursos.
         scanner.close();
     }
-
 }
