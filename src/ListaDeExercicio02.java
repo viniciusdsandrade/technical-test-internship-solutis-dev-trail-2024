@@ -38,7 +38,10 @@ public class ListaDeExercicio02 {
     Informe também, qual das palavras tem o maior número de caracteres.
 
     12. Os motoristas se preocupam com a quilometragem obtida por seus automóveis. Um
-    motorista monitorou vários tanques cheios de gasolina registrando a quilometragem dirigida e a quantidade de combustível em litros utilizados para cada tanque cheio. Desenvolva um aplicativo Java que receba como entrada os quilômetros dirigidos e os litros de gasolina consumidos (ambos com inteiros) para cada tanque cheio. O programa deve calcular e exibir o consumo em quilômetros/litro para cada tanque cheio e imprimir a quilometragem combinada e a soma total de litros de combustível consumidos até esse ponto. Todos os cálculos de média devem produzir resultados de ponto flutuante.
+    motorista monitorou vários tanques cheios de gasolina registrando a quilometragem dirigida e a quantidade de combustível em litros utilizados para cada tanque cheio.
+    Desenvolva um aplicativo Java que receba como entrada os quilômetros dirigidos e os litros de gasolina consumidos (ambos com inteiros) para cada tanque cheio.
+    O programa deve calcular e exibir o consumo em quilômetros/litro para cada tanque cheio e imprimir a quilometragem combinada e a soma total de litros de combustível consumidos até esse ponto.
+    Todos os cálculos de média devem produzir resultados de ponto flutuante.
 
     Observação: os exercícios da lista devem ser entregues até 31/07/2023 às 9h00m via class room e github
      */
@@ -102,7 +105,8 @@ public class ListaDeExercicio02 {
         exercicio08();
 
         /*
-        9. Escreva uma classe para calcular a área de um círculo, sabendo que a área é A = PI * r2, onde o raio (r) deve ser informado pelo usuário e o resultado terá que ser arredondado.
+        9. Escreva uma classe para calcular a área de um círculo, sabendo que a área é A = PI * r2, onde o raio (r)
+        deve ser informado pelo usuário e o resultado terá que ser arredondado.
          */
         exercicio09();
 
@@ -275,7 +279,7 @@ public class ListaDeExercicio02 {
 
         area = Math.PI * Math.pow(raio, 2);
 
-        System.out.println("A área do círculo é: " + area);
+        System.out.println("A área do círculo é: " + String.format("%.3f", area));
     }
 
     public static void exercicio10() {
@@ -333,28 +337,77 @@ public class ListaDeExercicio02 {
     }
 
     public static void exercicio12() {
+        // Inicializa o Scanner para receber a entrada do usuário
         Scanner scanner = new Scanner(System.in);
+
+        // Variáveis para armazenar os valores de quilômetros e litros inseridos,
+        // além de variáveis acumuladoras para os totais de quilômetros e litros.
         int km, litros, totalKm = 0, totalLitros = 0;
         double consumo;
 
+        // Saudação inicial e explicação do que o programa faz
+        System.out.println("Bem-vindo ao monitor de consumo de combustível!");
+        System.out.println("Por favor, insira os dados de cada tanque cheio.");
+        System.out.println("Quando terminar, digite '0' para sair e visualizar o resumo.");
+
+        // Loop para capturar dados de múltiplos tanques de gasolina.
         while (true) {
-            System.out.println("Digite os quilômetros dirigidos: ");
+            // Solicita ao usuário a entrada da quilometragem dirigida.
+            System.out.print("Digite os quilômetros dirigidos (ou 0 para sair): ");
             km = scanner.nextInt();
 
-            if (km == 0) break;
+            // Verifica se o usuário deseja encerrar o programa.
+            if (km == 0) {
+                System.out.println("Encerrando inserção de dados...");
+                break;
+            }
 
-            System.out.println("Digite os litros de gasolina consumidos: ");
+            // Solicita ao usuário a entrada da quantidade de litros de gasolina consumidos.
+            System.out.print("Digite os litros de gasolina consumidos: ");
             litros = scanner.nextInt();
 
+            // Verifica se os litros informados são válidos.
+            if (litros <= 0) {
+                System.out.println("Erro: A quantidade de litros deve ser maior que 0.");
+                System.out.println("Por favor, insira novamente os dados deste tanque.");
+                continue; // Reinicia o loop sem realizar cálculos.
+            }
+
+            // Calcula o consumo em quilômetros por litro (km/l).
             consumo = (double) km / litros;
 
-            System.out.println("Consumo em km/l: " + consumo);
+            // Exibe o consumo do tanque atual.
+            System.out.println("Consumo do tanque atual: " + String.format("%.2f", consumo) + " km/l.");
 
+            // Atualiza os totais acumulados de quilômetros e litros.
             totalKm += km;
             totalLitros += litros;
+
+            // Informa que os dados do tanque foram registrados com sucesso.
+            System.out.println("Dados do tanque registrados com sucesso!\n");
         }
 
-        System.out.println("Quilometragem combinada: " + totalKm);
-        System.out.println("Total de litros de combustível consumidos: " + totalLitros);
+        // Exibe o resumo final dos dados inseridos.
+        System.out.println("\n--- Resumo Final ---");
+        System.out.println("Quilometragem combinada: " + totalKm + " km");
+        System.out.println("Total de litros de combustível consumidos: " + totalLitros + " litros");
+
+        // Verifica se foram inseridos dados válidos para calcular a média.
+        if (totalLitros > 0) {
+            // Calcula e exibe a média geral de consumo em km/l para todos os tanques.
+            double mediaConsumo = (double) totalKm / totalLitros;
+            System.out.println("Média geral de consumo: " + String.format("%.2f", mediaConsumo) + " km/l.");
+        } else {
+            // Informa ao usuário que não houve dados suficientes para calcular a média.
+            System.out.println("Nenhum dado válido foi inserido para calcular a média.");
+        }
+
+        // Mensagem de encerramento.
+        System.out.println("\nObrigado por utilizar o monitor de consumo de combustível!");
+        System.out.println("Até a próxima!");
+
+        // Fecha o scanner para liberar recursos.
+        scanner.close();
     }
+
 }
