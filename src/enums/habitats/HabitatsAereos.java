@@ -1,6 +1,7 @@
 package enums.habitats;
 
 public enum HabitatsAereos {
+    URBANO,
     CEU_ABERTO,
     FLORESTAS,
     MONTANHAS,

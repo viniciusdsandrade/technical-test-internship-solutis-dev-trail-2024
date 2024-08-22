@@ -3,7 +3,7 @@ package animais_aereos;
 import classes_abstratas.AnimalVoadorAB;
 import enums.habitats.HabitatsAereos;
 
-import static enums.tipoAnimal.AnimalAereo.ARARA_AZUL;
+import static enums.tipoAnimal.AnimalAereo.POMBA;
 
 public class Pombo extends AnimalVoadorAB {
 
@@ -13,9 +13,7 @@ public class Pombo extends AnimalVoadorAB {
                  float velocidadeMaxima,
                  float envergadura,
                  float altitudeMaxima,
-                 float comidaIngerida,
-                 float distanciaPercorrida,
-                 int horasDormidas) {
+                 float massaEmKg) {
 
         super(habitatsAereos,
                 nome,
@@ -23,25 +21,9 @@ public class Pombo extends AnimalVoadorAB {
                 velocidadeMaxima,
                 envergadura,
                 altitudeMaxima,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
+                massaEmKg);
 
-        animalAereo = ARARA_AZUL;
-    }
-
-    // Construtor simplificado
-    public Pombo(HabitatsAereos habitatsAereos,
-                 int comidaIngerida,
-                 float distanciaPercorrida,
-                 int horasDormidas) {
-
-        super(habitatsAereos,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        animalAereo = ARARA_AZUL;
+        this.animalAereo = POMBA;
     }
 
     @Override
@@ -60,6 +42,12 @@ public class Pombo extends AnimalVoadorAB {
     public void dormir(int horas) {
         super.dormir(horas);
         System.out.println("Arara Azul dormindo...");
+    }
+
+    @Override
+    public void voar(float distancia) {
+        super.moverse(distancia);
+        System.out.println("Arara Azul voando...");
     }
 
     @Override

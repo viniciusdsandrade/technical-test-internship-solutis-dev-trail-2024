@@ -12,32 +12,14 @@ public class Gato extends AnimalTerresteAB {
                 int idade,
                 int qtdMembros,
                 float velocidadeMaxima,
-                float comidaIngerida,
-                float distanciaPercorrida,
-                int horasDormidas) {
+                float massaEmKg) {
 
         super(habitatTerrestre,
                 nome,
                 idade,
                 qtdMembros,
                 velocidadeMaxima,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        this.animalTerreste = GATO;
-    }
-
-    // Construtor simplificado
-    public Gato(HabitatTerrestre habitatTerrestre,
-                float comidaIngerida,
-                float distanciaPercorrida,
-                int horasDormidas) {
-
-        super(habitatTerrestre,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
+                massaEmKg);
 
         this.animalTerreste = GATO;
     }

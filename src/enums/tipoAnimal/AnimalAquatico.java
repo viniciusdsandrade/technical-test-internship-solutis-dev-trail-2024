@@ -1,7 +1,7 @@
 package enums.tipoAnimal;
 
 public enum AnimalAquatico {
-    PEIXE_PALHACO,
+    PEIXE,
     TUBARAO,
     BALEIA,
     GOLFINHO,

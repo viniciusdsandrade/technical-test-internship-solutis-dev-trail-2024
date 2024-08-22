@@ -5,18 +5,27 @@ import enums.tipoAnimal.AnimalAereo;
 
 import java.util.Objects;
 
-public abstract class AnimalVoadorAB implements AnimalIF {
+public abstract class AnimalVoadorAB extends AnimalAB {
 
-    protected HabitatsAereos habitatAereo;
+    // Enumeradores para a espécie e habitat do animal
     protected AnimalAereo animalAereo;
-    protected String nome;
-    protected int idade;
+    protected HabitatsAereos habitatAereo;
+
+
+    // Características específicas dos animais voadores
     protected float velocidadeMaxima;
     protected float envergadura;
     protected float altitudeMaxima;
+
+    // Características comuns a todos os tipos de animais (getters e setters definidos na classe AnimalAB)
+    protected String nome;
+    protected int idade;
     protected float comidaIngerida;
     protected float distanciaPercorrida;
     protected int horasDormidas;
+    protected float massaEmKg;
+
+
 
     public AnimalVoadorAB() {
     }
@@ -27,28 +36,18 @@ public abstract class AnimalVoadorAB implements AnimalIF {
                           float velocidadeMaxima,
                           float envergadura,
                           float altitudeMaxima,
-                          float comidaIngerida,
-                          float distanciaPercorrida,
-                          int horasDormidas) {
+                          float massaEmKg) {
         this.habitatAereo = habitatAereo;
         this.nome = nome;
         this.idade = idade;
         this.velocidadeMaxima = velocidadeMaxima;
         this.envergadura = envergadura;
         this.altitudeMaxima = altitudeMaxima;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
-    }
+        this.massaEmKg = massaEmKg;
 
-    public AnimalVoadorAB(HabitatsAereos habitatAereo,
-                          float comidaIngerida,
-                          float distanciaPercorrida,
-                          int horasDormidas) {
-        this.habitatAereo = habitatAereo;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
+        this.comidaIngerida = 0.0f;
+        this.distanciaPercorrida = 0.0f;
+        this.horasDormidas = 0;
     }
 
     @Override
@@ -57,114 +56,87 @@ public abstract class AnimalVoadorAB implements AnimalIF {
     }
 
     @Override
-    public void moverse(float distancia) {
-        this.distanciaPercorrida += distancia;
-    }
-
-    @Override
     public void dormir(int horas) {
         this.horasDormidas += horas;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public void setVelocidadeMaxima(int velocidadeMaxima) {
-        this.velocidadeMaxima = velocidadeMaxima;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setEnvergadura(int envergadura) {
-        this.envergadura = envergadura;
-    }
-
-    public void setAltitudeMaxima(int altitudeMaxima) {
-        this.altitudeMaxima = altitudeMaxima;
-    }
+    public abstract void voar(float distancia);
 
     public float getVelocidadeMaxima() {
         return velocidadeMaxima;
     }
-
+    public float getAltitudeMaxima() {
+        return altitudeMaxima;
+    }
+    public float getEnvergadura() {
+        return envergadura;
+    }
     public HabitatsAereos getHabitatAereo() {
         return habitatAereo;
     }
-
     public AnimalAereo getAnimalAereo() {
         return animalAereo;
     }
 
-    public int getIdade() {
-        return idade;
+    public void setVelocidadeMaxima(float velocidadeMaxima) {
+        if (velocidadeMaxima <= 0) {
+            throw new IllegalArgumentException("A velocidade máxima deve ser positiva.");
+        }
+        this.velocidadeMaxima = velocidadeMaxima;
     }
-
-    public String getNome() {
-        return nome;
+    public void setAltitudeMaxima(float altitudeMaxima) {
+        if (altitudeMaxima <= 0) {
+            throw new IllegalArgumentException("A altitude máxima deve ser positiva.");
+        }
+        this.altitudeMaxima = altitudeMaxima;
     }
-
-    public float getEnvergadura() {
-        return envergadura;
+    public void setEnvergadura(float envergadura) {
+        if (envergadura <= 0) {
+            throw new IllegalArgumentException("A envergadura deve ser positiva.");
+        }
+        this.envergadura = envergadura;
     }
-
-    public float getComidaIngerida() {
-        return comidaIngerida;
+    public void setHabitatAereo(HabitatsAereos habitatAereo) {
+        this.habitatAereo = habitatAereo;
     }
-
-    public float getAltitudeMaxima() {
-        return altitudeMaxima;
-    }
-
-    public float getDistanciaPercorrida() {
-        return distanciaPercorrida;
-    }
-
-    public int getHorasDormidas() {
-        return horasDormidas;
+    public void setAnimalAereo(AnimalAereo animalAereo) {
+        this.animalAereo = animalAereo;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
         if (!(o instanceof AnimalVoadorAB that)) return false;
 
-        return Objects.equals(this.animalAereo, that.animalAereo) &&
-                Objects.equals(this.habitatAereo, that.habitatAereo) &&
-                String.valueOf(this.nome).equals(that.nome) &&
-                this.idade == that.idade &&
+        return this.idade == that.idade &&
+                Float.compare(this.comidaIngerida, that.comidaIngerida) == 0 &&
+                Float.compare(this.distanciaPercorrida, that.distanciaPercorrida) == 0 &&
+                this.horasDormidas == that.horasDormidas &&
+                Float.compare(this.massaEmKg, that.massaEmKg) == 0 &&
                 Float.compare(this.velocidadeMaxima, that.velocidadeMaxima) == 0 &&
                 Float.compare(this.envergadura, that.envergadura) == 0 &&
                 Float.compare(this.altitudeMaxima, that.altitudeMaxima) == 0 &&
-                Float.compare(this.comidaIngerida, that.comidaIngerida) == 0 &&
-                Float.compare(this.distanciaPercorrida, that.distanciaPercorrida) == 0 &&
-                this.horasDormidas == that.horasDormidas;
+                this.animalAereo == that.animalAereo &&
+                this.habitatAereo == that.habitatAereo &&
+                this.nome.equals(that.nome);
     }
-
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int hash = 1;
-
-        hash *= prime + ((nome == null) ? 0 : nome.hashCode());
-        hash *= prime + ((animalAereo == null) ? 0 : animalAereo.hashCode());
-        hash *= prime + ((habitatAereo == null) ? 0 : habitatAereo.hashCode());
-        hash *= prime + ((idade == 0) ? 0 : idade);
-        hash *= prime + ((velocidadeMaxima == 0) ? 0 : Float.floatToIntBits(velocidadeMaxima));
-        hash *= prime + ((envergadura == 0) ? 0 : Float.floatToIntBits(envergadura));
-        hash *= prime + ((altitudeMaxima == 0) ? 0 : Float.floatToIntBits(altitudeMaxima));
-        hash *= prime + ((comidaIngerida == 0) ? 0 : Float.floatToIntBits(comidaIngerida));
-        hash *= prime + ((distanciaPercorrida == 0) ? 0 : Float.floatToIntBits(distanciaPercorrida));
-        hash *= prime + ((horasDormidas == 0) ? 0 : horasDormidas);
-
-        if (hash < 0) hash = -hash;
-
-        return hash;
+        int result = animalAereo.hashCode();
+        result = 31 * result + habitatAereo.hashCode();
+        result = 31 * result + nome.hashCode();
+        result = 31 * result + idade;
+        result = 31 * result + Float.hashCode(comidaIngerida);
+        result = 31 * result + Float.hashCode(distanciaPercorrida);
+        result = 31 * result + horasDormidas;
+        result = 31 * result + Float.hashCode(massaEmKg);
+        result = 31 * result + Float.hashCode(velocidadeMaxima);
+        result = 31 * result + Float.hashCode(envergadura);
+        result = 31 * result + Float.hashCode(altitudeMaxima);
+        return result;
     }
+
 
     @Override
     public String toString() {

@@ -1,20 +1,31 @@
 package classes_abstratas;
 
 import enums.habitats.HabitatAquatico;
+import enums.tipoAgua.Agua;
 import enums.tipoAnimal.AnimalAquatico;
 
 import java.util.Objects;
 
-public abstract class AnimalMarinhoAB implements AnimalIF {
+public abstract class AnimalMarinhoAB extends AnimalAB {
 
+    // Enumeradores para a espécie e habitat do animal
     protected AnimalAquatico animalAquatico;
     protected HabitatAquatico habitatAquatico;
+
+    // Características comuns a todos os tipos de animais (getters e setters definidos na classe AnimalAB)
     protected String nome;
     protected int idade;
-    protected float profundidadeMaxima;
+
+
+
     protected float comidaIngerida;
     protected float distanciaPercorrida;
     protected int horasDormidas;
+    protected float massaEmKg;
+
+    // Características específicas dos animais marinhos
+    protected float profundidadeMaxima;
+    protected Agua agua;
 
     public AnimalMarinhoAB() {
     }
@@ -23,26 +34,18 @@ public abstract class AnimalMarinhoAB implements AnimalIF {
                            String nome,
                            int idade,
                            float profundidadeMaxima,
-                           float comidaIngerida,
-                           float distanciaPercorrida,
-                           int horasDormidas) {
+                           float massaEmKg,
+                           Agua agua) {
         this.habitatAquatico = habitatAquatico;
         this.nome = nome;
         this.idade = idade;
         this.profundidadeMaxima = profundidadeMaxima;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
-    }
+        this.massaEmKg = massaEmKg;
+        this.agua = agua;
 
-    public AnimalMarinhoAB(HabitatAquatico habitatAquatico,
-                           float comidaIngerida,
-                           float distanciaPercorrida,
-                           int horasDormidas) {
-        this.habitatAquatico = habitatAquatico;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
+        this.comidaIngerida = 0.0f;
+        this.distanciaPercorrida = 0.0f;
+        this.horasDormidas = 0;
     }
 
     @Override
@@ -51,92 +54,77 @@ public abstract class AnimalMarinhoAB implements AnimalIF {
     }
 
     @Override
-    public void moverse(float distancia) {
-        this.distanciaPercorrida += distancia;
-    }
-
-    @Override
     public void dormir(int horas) {
         this.horasDormidas += horas;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public abstract void nadar(float distancia);
+
+    public HabitatAquatico getHabitatAquatico() {
+        return habitatAquatico;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setProfundidadeMaxima(int profundidadeMaxima) {
-        this.profundidadeMaxima = profundidadeMaxima;
-    }
-
-    public int getIdade() {
-        return idade;
+    public void setHabitatAquatico(HabitatAquatico habitatAquatico) {
+        this.habitatAquatico = habitatAquatico;
     }
 
     public AnimalAquatico getAnimalAquatico() {
         return animalAquatico;
     }
 
-    public HabitatAquatico getHabitatAquatico() {
-        return habitatAquatico;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public float getComidaIngerida() {
-        return comidaIngerida;
-    }
-
-    public float getDistanciaPercorrida() {
-        return distanciaPercorrida;
-    }
-
-    public int getHorasDormidas() {
-        return horasDormidas;
+    public void setAnimalAquatico(AnimalAquatico animalAquatico) {
+        this.animalAquatico = animalAquatico;
     }
 
     public float getProfundidadeMaxima() {
         return profundidadeMaxima;
     }
 
+    public void setProfundidadeMaxima(float profundidadeMaxima) {
+        if (profundidadeMaxima <= 0)
+            throw new IllegalArgumentException("Profundidade máxima deve ser maior que zero.");
+
+        this.profundidadeMaxima = profundidadeMaxima;
+    }
+
+    public Agua getAgua() {
+        return agua;
+    }
+
+    public void setAgua(Agua agua) {
+        this.agua = agua;
+    }
+
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
         if (!(o instanceof AnimalMarinhoAB that)) return false;
 
-        return Objects.equals(this.animalAquatico, that.animalAquatico) &&
-                Objects.equals(this.habitatAquatico, that.habitatAquatico) &&
-                String.valueOf(this.nome).equals(that.nome) &&
-                this.idade == that.idade &&
-                Objects.equals(this.profundidadeMaxima, that.profundidadeMaxima) &&
-                Objects.equals(this.comidaIngerida, that.comidaIngerida) &&
-                Objects.equals(this.distanciaPercorrida, that.distanciaPercorrida) &&
-                this.horasDormidas == that.horasDormidas;
+        return idade == that.idade &&
+                Float.compare(this.comidaIngerida, that.comidaIngerida) == 0 &&
+                Float.compare(this.distanciaPercorrida, that.distanciaPercorrida) == 0 &&
+                this.horasDormidas == that.horasDormidas &&
+                Float.compare(this.massaEmKg, that.massaEmKg) == 0 &&
+                Float.compare(this.profundidadeMaxima, that.profundidadeMaxima) == 0 &&
+                this.animalAquatico == that.animalAquatico &&
+                this.habitatAquatico == that.habitatAquatico &&
+                this.nome.equals(that.nome) &&
+                this.agua == that.agua;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int hash = 1;
-
-        hash *= prime + ((nome == null) ? 0 : nome.hashCode());
-        hash *= prime + ((animalAquatico == null) ? 0 : animalAquatico.hashCode());
-        hash *= prime + ((habitatAquatico == null) ? 0 : habitatAquatico.hashCode());
-        hash *= prime + ((idade == 0) ? 0 : idade);
-        hash *= prime + ((profundidadeMaxima == 0) ? 0 : Float.floatToIntBits(profundidadeMaxima));
-        hash *= prime + ((comidaIngerida == 0) ? 0 : Float.floatToIntBits(comidaIngerida));
-        hash *= prime + ((distanciaPercorrida == 0) ? 0 : Float.floatToIntBits(distanciaPercorrida));
-        hash *= prime + ((horasDormidas == 0) ? 0 : horasDormidas);
-
-        if (hash < 0) hash = -hash;
-
-        return hash;
+        int result = animalAquatico.hashCode();
+        result = 31 * result + habitatAquatico.hashCode();
+        result = 31 * result + nome.hashCode();
+        result = 31 * result + idade;
+        result = 31 * result + Float.hashCode(comidaIngerida);
+        result = 31 * result + Float.hashCode(distanciaPercorrida);
+        result = 31 * result + horasDormidas;
+        result = 31 * result + Float.hashCode(massaEmKg);
+        result = 31 * result + Float.hashCode(profundidadeMaxima);
+        result = 31 * result + agua.hashCode();
+        return result;
     }
 
     @Override

@@ -5,17 +5,23 @@ import enums.tipoAnimal.AnimalTerreste;
 
 import java.util.Objects;
 
-public abstract class AnimalTerresteAB implements AnimalIF {
+public abstract class AnimalTerresteAB extends AnimalAB {
 
+    // Enumeradores para a espécie e habitat do animal
     protected AnimalTerreste animalTerreste;
     protected HabitatTerrestre habitatTerrestre;
+
+    // Características comuns a todos os tipos de animais (getters e setters definidos na classe AnimalAB)
     protected String nome;
     protected int idade;
-    protected int qtdMembros;
-    protected float velocidadeMaxima;
     protected float comidaIngerida;
     protected float distanciaPercorrida;
     protected int horasDormidas;
+    protected float massaEmKg;
+
+    // Características específicas dos animais terrestres
+    protected int qtdMembros;
+    protected float velocidadeMaxima;
 
     public AnimalTerresteAB() {
     }
@@ -25,28 +31,18 @@ public abstract class AnimalTerresteAB implements AnimalIF {
                             int idade,
                             int qtdMembros,
                             float velocidadeMaxima,
-                            float comidaIngerida,
-                            float distanciaPercorrida,
-                            int horasDormidas) {
+                            float massaEmKg) {
 
         this.habitatTerrestre = habitatTerrestre;
         this.nome = nome;
         this.idade = idade;
         this.qtdMembros = qtdMembros;
         this.velocidadeMaxima = velocidadeMaxima;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
-    }
+        this.massaEmKg = massaEmKg;
 
-    public AnimalTerresteAB(HabitatTerrestre habitatTerrestre,
-                            float comidaIngerida,
-                            float distanciaPercorrida,
-                            int horasDormidas) {
-        this.habitatTerrestre = habitatTerrestre;
-        this.comidaIngerida = comidaIngerida;
-        this.distanciaPercorrida = distanciaPercorrida;
-        this.horasDormidas = horasDormidas;
+        this.comidaIngerida = 0.0f;
+        this.distanciaPercorrida = 0.0f;
+        this.horasDormidas = 0;
     }
 
     @Override
@@ -64,36 +60,29 @@ public abstract class AnimalTerresteAB implements AnimalIF {
         this.horasDormidas += horas;
     }
 
-    public int getIdade() {
-        return idade;
+    public int getQtdMembros() {
+        return qtdMembros;
+    }
+
+    public void setQtdMembros(int qtdMembros) {
+        if (qtdMembros < 0) throw new IllegalArgumentException("A quantidade de membros não pode ser negativa");
+        this.qtdMembros = qtdMembros;
     }
 
     public AnimalTerreste getAnimalTerreste() {
         return animalTerreste;
     }
 
+    public void setAnimalTerreste(AnimalTerreste animalTerreste) {
+        this.animalTerreste = animalTerreste;
+    }
+
     public HabitatTerrestre getHabitatTerrestre() {
         return habitatTerrestre;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public int getQtdMembros() {
-        return qtdMembros;
-    }
-
-    public float getComidaIngerida() {
-        return comidaIngerida;
-    }
-
-    public float getDistanciaPercorrida() {
-        return distanciaPercorrida;
-    }
-
-    public int getHorasDormidas() {
-        return horasDormidas;
+    public void setHabitatTerrestre(HabitatTerrestre habitatTerrestre) {
+        this.habitatTerrestre = habitatTerrestre;
     }
 
     public float getVelocidadeMaxima() {
@@ -101,58 +90,42 @@ public abstract class AnimalTerresteAB implements AnimalIF {
     }
 
     public void setVelocidadeMaxima(float velocidadeMaxima) {
+        if (velocidadeMaxima <= 0) throw new IllegalArgumentException("A velocidade máxima deve ser maior que zero.");
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public void setQtdMembros(int qtdMembros) {
-        this.qtdMembros = qtdMembros;
-    }
-
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
         if (!(o instanceof AnimalTerresteAB that)) return false;
 
-        return Objects.equals(this.animalTerreste, that.animalTerreste) &&
-                Objects.equals(this.habitatTerrestre, that.habitatTerrestre) &&
-                String.valueOf(this.nome).equals(that.nome) &&
-                this.idade == that.idade &&
+        return this.idade == that.idade &&
+                Float.compare(this.comidaIngerida, that.comidaIngerida) == 0 &&
+                Float.compare(this.distanciaPercorrida, that.distanciaPercorrida) == 0 &&
+                this.horasDormidas == that.horasDormidas &&
+                Float.compare(this.massaEmKg, that.massaEmKg) == 0 &&
                 this.qtdMembros == that.qtdMembros &&
-                Float.compare(that.velocidadeMaxima, this.velocidadeMaxima) == 0 &&
-                Float.compare(that.comidaIngerida, this.comidaIngerida) == 0 &&
-                Float.compare(that.distanciaPercorrida, this.distanciaPercorrida) == 0 &&
-                this.horasDormidas == that.horasDormidas;
+                Float.compare(this.velocidadeMaxima, that.velocidadeMaxima) == 0 &&
+                this.animalTerreste == that.animalTerreste &&
+                this.habitatTerrestre == that.habitatTerrestre &&
+                this.nome.equals(that.nome);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int hash = 1;
-
-        hash *= prime + ((nome == null) ? 0 : nome.hashCode());
-        hash *= prime + ((animalTerreste == null) ? 0 : animalTerreste.hashCode());
-        hash *= prime + ((habitatTerrestre == null) ? 0 : habitatTerrestre.hashCode());
-        hash *= prime + ((idade == 0) ? 0 : idade);
-        hash *= prime + ((qtdMembros == 0) ? 0 : qtdMembros);
-        hash *= prime + ((velocidadeMaxima == 0) ? 0 : Float.floatToIntBits(velocidadeMaxima));
-        hash *= prime + ((comidaIngerida == 0) ? 0 : Float.floatToIntBits(comidaIngerida));
-        hash *= prime + ((distanciaPercorrida == 0) ? 0 : Float.floatToIntBits(distanciaPercorrida));
-        hash *= prime + ((horasDormidas == 0) ? 0 : horasDormidas);
-
-        if (hash < 0) hash = -hash;
-
-        return hash;
+        int result = animalTerreste.hashCode();
+        result = 31 * result + habitatTerrestre.hashCode();
+        result = 31 * result + nome.hashCode();
+        result = 31 * result + idade;
+        result = 31 * result + Float.hashCode(comidaIngerida);
+        result = 31 * result + Float.hashCode(distanciaPercorrida);
+        result = 31 * result + horasDormidas;
+        result = 31 * result + Float.hashCode(massaEmKg);
+        result = 31 * result + qtdMembros;
+        result = 31 * result + Float.hashCode(velocidadeMaxima);
+        return result;
     }
-
+    
     @Override
     public String toString() {
         return "{" +

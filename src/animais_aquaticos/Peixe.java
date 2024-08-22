@@ -2,8 +2,9 @@ package animais_aquaticos;
 
 import classes_abstratas.AnimalMarinhoAB;
 import enums.habitats.HabitatAquatico;
+import enums.tipoAgua.Agua;
 
-import static enums.tipoAnimal.AnimalAquatico.PEIXE_PALHACO;
+import static enums.tipoAnimal.AnimalAquatico.PEIXE;
 
 public class Peixe extends AnimalMarinhoAB {
 
@@ -11,33 +12,17 @@ public class Peixe extends AnimalMarinhoAB {
                  String nome,
                  int idade,
                  float profundidadeMaxima,
-                 float comidaIngerida,
-                 float distanciaPercorrida,
-                 int horasDormidas) {
+                 float massaEmKg,
+                 Agua agua) {
 
         super(habitatAquatico,
                 nome,
                 idade,
                 profundidadeMaxima,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
+                massaEmKg,
+                agua);
 
-        animalAquatico = PEIXE_PALHACO;
-    }
-
-    // Construtor simplificado
-    public Peixe(HabitatAquatico habitatAquatico,
-                 float comidaIngerida,
-                 float distanciaPercorrida,
-                 int horasDormidas) {
-
-        super(habitatAquatico,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        animalAquatico = PEIXE_PALHACO;
+        this.animalAquatico = PEIXE;
     }
 
     @Override
@@ -56,6 +41,11 @@ public class Peixe extends AnimalMarinhoAB {
     public void dormir(int horas) {
         super.dormir(horas);
         System.out.println("Peixe-palhaço dormindo...");
+    }
+
+    @Override
+    public void nadar(float distancia) {
+        this.distanciaPercorrida += distancia;
     }
 
     @Override

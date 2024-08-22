@@ -12,32 +12,14 @@ public class Leao extends AnimalTerresteAB {
                 int idade,
                 int qtdMembros,
                 float velocidadeMaxima,
-                float comidaIngerida,
-                float distanciaPercorrida,
-                int horasDormidas) {
+                float massaEmKg) {
 
         super(habitatTerrestre,
                 nome,
                 idade,
                 qtdMembros,
                 velocidadeMaxima,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
-
-        this.animalTerreste = LEAO;
-    }
-
-    // Construtor simplificado
-    public Leao(HabitatTerrestre habitatTerrestre,
-                float comidaIngerida,
-                float distanciaPercorrida,
-                int horasDormidas) {
-
-        super(habitatTerrestre,
-                comidaIngerida,
-                distanciaPercorrida,
-                horasDormidas);
+                massaEmKg);
 
         this.animalTerreste = LEAO;
     }

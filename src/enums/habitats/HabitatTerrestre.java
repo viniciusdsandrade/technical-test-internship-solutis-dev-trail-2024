@@ -1,6 +1,7 @@
 package enums.habitats;
 
 public enum HabitatTerrestre {
+    URBANO,
     FLORESTA_TROPICAL,
     SAVANAS,
     DESERTO,
