@@ -77,6 +77,32 @@ public class Operario extends Empregado {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Operario that = (Operario) obj;
+
+        return super.equals(obj) &&
+                Double.compare(this.valorProducao, that.valorProducao) == 0 &&
+                Double.compare(this.comissao, that.comissao) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = super.hashCode();
+
+        hash *= prime + Double.hashCode(valorProducao);
+        hash *= prime + Double.hashCode(comissao);
+
+        if (hash < 0) hash *= -1;
+
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "{\n" +
                 "\"nome\":\"" + getNome() + "\"," +
@@ -85,8 +111,8 @@ public class Operario extends Empregado {
                 "\"codigoSetor\":" + getCodigoSetor() + "," +
                 "\"salarioBase\":" + getSalarioBase() + "," +
                 "\"imposto\":" + getImposto() + "," +
-                "\"valorProducao\":" + valorProducao + "," +
-                "\"comissao\":" + comissao + "," +
+                "\"valorProducao\":" + getValorProducao() + "," +
+                "\"comissao\":" + getComissao() + "," +
                 "\"salarioTotal\":" + calcularSalario() +
                 "}\n";
     }

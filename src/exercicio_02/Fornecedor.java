@@ -67,13 +67,39 @@ public class Fornecedor extends Pessoa {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Fornecedor that = (Fornecedor) obj;
+
+        return super.equals(obj) &&
+                Double.compare(this.valorCredito, that.valorCredito) == 0 &&
+                Double.compare(this.valorDivida, that.valorDivida) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = super.hashCode();
+
+        hash *= prime + Double.hashCode(valorCredito);
+        hash *= prime + Double.hashCode(valorDivida);
+
+        if (hash < 0) hash *= -1;
+
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "{\n" +
                 "\"nome\": \"" + getNome() + "\",\n" +
                 "\"endereco\": \"" + getEndereco() + "\",\n" +
                 "\"telefone\": \"" + getTelefone() + "\",\n" +
-                "\"valorCredito\": " + valorCredito + ",\n" +
-                "\"valorDivida\": " + valorDivida + ",\n" +
+                "\"valorCredito\": " + getValorCredito() + ",\n" +
+                "\"valorDivida\": " + getValorDivida() + ",\n" +
                 "\"saldo\": " + obterSaldo() + "\n" +
                 "}";
     }

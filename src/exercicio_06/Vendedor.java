@@ -76,6 +76,32 @@ public class Vendedor extends Empregado {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Vendedor that = (Vendedor) obj;
+
+        return super.equals(obj) &&
+                Double.compare(this.valorVendas, that.valorVendas) == 0 &&
+                Double.compare(this.comissao, that.comissao) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = super.hashCode();
+
+        hash *= prime + Double.hashCode(valorVendas);
+        hash *= prime + Double.hashCode(comissao);
+
+        if (hash < 0) hash *= -1;
+
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "{\n" +
                 "\"nome\":\"" + getNome() + "\"," +
@@ -84,8 +110,8 @@ public class Vendedor extends Empregado {
                 "\"codigoSetor\":" + getCodigoSetor() + "," +
                 "\"salarioBase\":" + getSalarioBase() + "," +
                 "\"imposto\":" + getImposto() + "," +
-                "\"valorVendas\":" + valorVendas + "," +
-                "\"comissao\":" + comissao + "," +
+                "\"valorVendas\":" + getValorVendas() + "," +
+                "\"comissao\":" + getComissao() + "," +
                 "\"salarioTotal\":" + calcularSalario() +
                 "}\n";
     }

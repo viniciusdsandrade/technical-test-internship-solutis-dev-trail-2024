@@ -63,6 +63,30 @@ public class Administrador extends Empregado {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Administrador that = (Administrador) obj;
+
+        return super.equals(obj) &&
+                Double.compare(this.ajudaDeCusto, that.ajudaDeCusto) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = super.hashCode();
+
+        hash *= prime + Double.hashCode(ajudaDeCusto);
+
+        if (hash < 0) hash *= -1;
+
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "{\n" +
                 "\"nome\": \"" + getNome() + "\",\n" +
@@ -71,7 +95,7 @@ public class Administrador extends Empregado {
                 "\"codigoSetor\": " + getCodigoSetor() + ",\n" +
                 "\"salarioBase\": " + getSalarioBase() + ",\n" +
                 "\"imposto\": " + getImposto() + ",\n" +
-                "\"ajudaDeCusto\": " + ajudaDeCusto + ",\n" +
+                "\"ajudaDeCusto\": " + getAjudaDeCusto() + ",\n" +
                 "\"salarioLiquido\": " + calcularSalario() + "\n" +
                 "}\n";
     }

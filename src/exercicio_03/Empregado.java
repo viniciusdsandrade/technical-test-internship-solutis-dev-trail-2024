@@ -55,20 +55,20 @@ public class Empregado extends Pessoa {
         return codigoSetor;
     }
 
-    public void setCodigoSetor(int codigoSetor) {
-        this.codigoSetor = codigoSetor;
-    }
-
     public double getSalarioBase() {
         return salarioBase;
     }
 
-    public void setSalarioBase(double salarioBase) {
-        this.salarioBase = salarioBase;
-    }
-
     public double getImposto() {
         return imposto;
+    }
+
+    public void setCodigoSetor(int codigoSetor) {
+        this.codigoSetor = codigoSetor;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
     }
 
     public void setImposto(double imposto) {
@@ -80,14 +80,42 @@ public class Empregado extends Pessoa {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Empregado that = (Empregado) obj;
+
+        return super.equals(obj) &&
+                this.codigoSetor == that.codigoSetor &&
+                Double.compare(this.salarioBase, that.salarioBase) == 0 &&
+                Double.compare(this.imposto, that.imposto) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = super.hashCode();
+
+        hash *= prime + codigoSetor;
+        hash *= prime + Double.hashCode(salarioBase);
+        hash *= prime + Double.hashCode(imposto);
+
+        if (hash < 0) hash *= -1;
+
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "{\n" +
                 "\"nome\": \"" + getNome() + "\",\n" +
                 "\"endereco\": \"" + getEndereco() + "\",\n" +
                 "\"telefone\": \"" + getTelefone() + "\",\n" +
-                "\"codigoSetor\": " + codigoSetor + ",\n" +
-                "\"salarioBase\": " + salarioBase + ",\n" +
-                "\"imposto\": " + imposto + ",\n" +
+                "\"codigoSetor\": " + getCodigoSetor() + ",\n" +
+                "\"salarioBase\": " + getSalarioBase() + ",\n" +
+                "\"imposto\": " + getImposto() + ",\n" +
                 "\"salarioLiquido\": " + calcularSalario() + "\n" +
                 "}\n";
     }
