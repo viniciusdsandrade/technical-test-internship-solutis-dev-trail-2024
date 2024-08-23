@@ -10,6 +10,12 @@ Estenda o modelo implementado no exercício anterior de forma que all funcionár
     ■ Com a conclusão da graduação a renda total é a renda do nível anterior acrescentada em 100%;
  */
 
+/*
+Observações:
+    Com base no enunciado anterior, assumo que o funcionário para além da renda básica de R$ 1000,00 + eventuais comissões, possua o seu salário base
+    definido no momento da criação do objeto Funcionario. A renda total é o somatório da renda básica e do salário base.
+ */
+
 public class Empresa {
 
     List<Funcionario> funcionarios = new ArrayList<>();
@@ -47,8 +53,16 @@ public class Empresa {
         funcionarios.remove(funcionario);
     }
 
+    public Funcionario[] getFuncionarios() {
+        return funcionarios.toArray(new Funcionario[0]);
+    }
+
+    public void listarFuncionarios() {
+        funcionarios.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
-        Funcionario funcionario0 = new Funcionario("Carlos", 0, NIVEL_ACADEMICO.SEM_ESTUDO, "", 900);
+        Funcionario funcionario0 = new Funcionario("Carlos", 0, NIVEL_ACADEMICO.ENSINO_SUPERIOR, "Universidade J", 900);
         Funcionario funcionario1 = new Funcionario("João", 1, NIVEL_ACADEMICO.ENSINO_FUNDAMENTAL_1, "Escola D", 1500);
         Funcionario funcionario2 = new Funcionario("Maria", 2, NIVEL_ACADEMICO.ENSINO_FUNDAMENTAL_2, "Escola A", 2000);
         Funcionario funcionario3 = new Funcionario("José", 3, NIVEL_ACADEMICO.ENSINO_MEDIO, "Escola B", 2500);
@@ -62,6 +76,8 @@ public class Empresa {
         empresa.adicionarFuncionario(funcionario3);
         empresa.adicionarFuncionario(funcionario4);
 
-        empresa.funcionarios.forEach(System.out::println);
+        empresa.listarFuncionarios();
     }
+
+
 }

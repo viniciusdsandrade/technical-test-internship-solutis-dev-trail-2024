@@ -48,8 +48,12 @@ public class Empresa {
         funcionarios.remove(funcionario);
     }
 
+    public void listarFuncionarios() {
+        funcionarios.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
-        Funcionario funcionario0 = new Funcionario("Carlos", 0, NIVEL_ACADEMICO.SEM_ESTUDO, "");
+        Funcionario funcionario0 = new Funcionario("Carlos", 0, NIVEL_ACADEMICO.SEM_ESTUDO, "Não");
         Funcionario funcionario1 = new Funcionario("João", 1, NIVEL_ACADEMICO.ENSINO_FUNDAMENTAL_1, "Escola D");
         Funcionario funcionario2 = new Funcionario("Maria", 2, NIVEL_ACADEMICO.ENSINO_FUNDAMENTAL_2, "Escola A");
         Funcionario funcionario3 = new Funcionario("José", 3, NIVEL_ACADEMICO.ENSINO_MEDIO, "Escola B");
@@ -63,6 +67,6 @@ public class Empresa {
         empresa.adicionarFuncionario(funcionario3);
         empresa.adicionarFuncionario(funcionario4);
 
-        empresa.funcionarios.forEach(System.out::println);
+        empresa.listarFuncionarios();
     }
 }

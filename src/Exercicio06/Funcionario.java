@@ -1,5 +1,17 @@
 package Exercicio06;
 
+/*
+Estenda o modelo implementado no exercício anterior de forma que all funcionário possua uma renda básica de R$ 1000,00 e:
+    ■ Com a conclusão do ensino básico a renda total é renda básica acrescentada em 10%;
+    ■ Com a conclusão do ensino médio a renda total é a renda do nível anterior acrescentada em 50%;
+    ■ Com a conclusão da graduação a renda total é a renda do nível anterior acrescentada em 100%;
+ */
+
+/*
+Observações:
+    Com base no enunciado anterior, assumo que o funcionário para além da renda básica de R$ 1000,00 + eventuais comissões, possua o seu salário base
+    definido no momento da criação do objeto Funcionario. A renda total é o somatório da renda básica e do salário base.
+ */
 public class Funcionario {
     private static final double RENDA_BASICA = 1000.00;
 
@@ -8,6 +20,8 @@ public class Funcionario {
     private NIVEL_ACADEMICO nivelEscolaridade;
     private String nomeInstituicao;
     private double renda;
+    private double rendaBasicaTotal;
+    private double rendaTotal;
 
     public Funcionario() {
     }
@@ -21,7 +35,9 @@ public class Funcionario {
         this.codigoFuncional = codigoFuncional;
         this.nivelEscolaridade = nivelEscolaridade;
         this.nomeInstituicao = nomeInstituicao;
-        this.renda = calcularRendaTotal();
+        this.renda = renda;
+        this.rendaBasicaTotal = calcularRendaBasicaTotal();
+        this.rendaTotal = calcularRendaTotal();
     }
 
     public String getNome() {
@@ -44,6 +60,18 @@ public class Funcionario {
         return renda;
     }
 
+    public double getRendaTotal() {
+        return rendaTotal;
+    }
+
+    public double getRendaBasicaTotal() {
+        return rendaBasicaTotal;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public void setNomeInstituicao(String nomeInstituicao) {
         this.nomeInstituicao = nomeInstituicao;
     }
@@ -56,26 +84,25 @@ public class Funcionario {
         this.codigoFuncional = codigoFuncional;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setRenda(double renda) {
+        if (renda < 0) throw new IllegalArgumentException("Renda não pode ser negativa");
+        this.renda = renda;
     }
 
     /*
     Estenda o modelo implementado no exercício anterior de forma que all funcionário possua uma renda básica de R$ 1000,00 e:
-    ■ Com a conclusão do ensino básico a renda total é renda básica acrescentada em 10%;
-    ■ Com a conclusão do ensino médio a renda total é a renda do nível anterior acrescentada em 50%;
-    ■ Com a conclusão da graduação a renda total é a renda do nível anterior acrescentada em 100%;
+        ■ Com a conclusão do ensino básico a renda total é renda básica acrescentada em 10%;
+        ■ Com a conclusão do ensino médio a renda total é a renda do nível anterior acrescentada em 50%;
+        ■ Com a conclusão da graduação a renda total é a renda do nível anterior acrescentada em 100%;
      */
 
     public double calcularRendaBasicaTotal() {
-        double rendaBasicaTotal = 0;
+        double rendaBasicaTotal = RENDA_BASICA;
 
         switch (nivelEscolaridade) {
-            case ENSINO_FUNDAMENTAL_1, ENSINO_FUNDAMENTAL_2 ->
-                    rendaBasicaTotal = RENDA_BASICA + (RENDA_BASICA * 0.10);// 10% em cima de 10%
-            case ENSINO_MEDIO -> rendaBasicaTotal = RENDA_BASICA + (RENDA_BASICA * 0.65); // 50% em cima de 10%
-            case ENSINO_SUPERIOR ->
-                    rendaBasicaTotal = RENDA_BASICA + (RENDA_BASICA * 2.3); // 100% em cima de 50% de 10%
+            case ENSINO_FUNDAMENTAL_1, ENSINO_FUNDAMENTAL_2 -> rendaBasicaTotal += RENDA_BASICA * 0.10;
+            case ENSINO_MEDIO -> rendaBasicaTotal += RENDA_BASICA * 0.65; // 10% de 50% adicional
+            case ENSINO_SUPERIOR -> rendaBasicaTotal += RENDA_BASICA * 2.3; // 10% de 50% de 100% adicional
             default -> {
             }
         }
@@ -126,8 +153,9 @@ public class Funcionario {
                 "\"codigoFuncional\": " + codigoFuncional + ",\n" +
                 "\"nivelEscolaridade\": \"" + nivelEscolaridade + "\",\n" +
                 "\"nomeInstituicao\": \"" + nomeInstituicao + "\",\n" +
-                "\"renda\": " + renda + "\n" +
+                "\"renda\": " + renda + ",\n" +
+                "\"rendaBasicaTotal\": " + rendaBasicaTotal + ",\n" +
+                "\"rendaTotal\": " + rendaTotal + "\n" +
                 "}";
     }
 }
-
