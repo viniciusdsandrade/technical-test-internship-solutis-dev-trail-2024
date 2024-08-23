@@ -63,6 +63,6 @@ public class Pombo extends AnimalVoadorAB {
                 "  \"comidaIngerida\": " + comidaIngerida + ",\n" +
                 "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
                 "  \"horasDormidas\": " + horasDormidas + "\n" +
-                "}";
+                "}\n";
     }
 }

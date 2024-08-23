@@ -64,29 +64,29 @@ public abstract class AnimalTerresteAB extends AnimalAB {
         return qtdMembros;
     }
 
-    public void setQtdMembros(int qtdMembros) {
-        if (qtdMembros < 0) throw new IllegalArgumentException("A quantidade de membros não pode ser negativa");
-        this.qtdMembros = qtdMembros;
-    }
-
     public AnimalTerreste getAnimalTerreste() {
         return animalTerreste;
-    }
-
-    public void setAnimalTerreste(AnimalTerreste animalTerreste) {
-        this.animalTerreste = animalTerreste;
     }
 
     public HabitatTerrestre getHabitatTerrestre() {
         return habitatTerrestre;
     }
 
-    public void setHabitatTerrestre(HabitatTerrestre habitatTerrestre) {
-        this.habitatTerrestre = habitatTerrestre;
-    }
-
     public float getVelocidadeMaxima() {
         return velocidadeMaxima;
+    }
+
+    public void setQtdMembros(int qtdMembros) {
+        if (qtdMembros < 0) throw new IllegalArgumentException("A quantidade de membros não pode ser negativa");
+        this.qtdMembros = qtdMembros;
+    }
+
+    public void setAnimalTerreste(AnimalTerreste animalTerreste) {
+        this.animalTerreste = animalTerreste;
+    }
+
+    public void setHabitatTerrestre(HabitatTerrestre habitatTerrestre) {
+        this.habitatTerrestre = habitatTerrestre;
     }
 
     public void setVelocidadeMaxima(float velocidadeMaxima) {
@@ -113,30 +113,35 @@ public abstract class AnimalTerresteAB extends AnimalAB {
 
     @Override
     public int hashCode() {
-        int result = animalTerreste.hashCode();
-        result = 31 * result + habitatTerrestre.hashCode();
-        result = 31 * result + nome.hashCode();
-        result = 31 * result + idade;
-        result = 31 * result + Float.hashCode(comidaIngerida);
-        result = 31 * result + Float.hashCode(distanciaPercorrida);
-        result = 31 * result + horasDormidas;
-        result = 31 * result + Float.hashCode(massaEmKg);
-        result = 31 * result + qtdMembros;
-        result = 31 * result + Float.hashCode(velocidadeMaxima);
-        return result;
+        final int prime = 31;
+        int hash = animalTerreste.hashCode();
+
+        hash *= prime + habitatTerrestre.hashCode();
+        hash *= prime + nome.hashCode();
+        hash *= prime + idade;
+        hash *= prime + Float.hashCode(comidaIngerida);
+        hash *= prime + Float.hashCode(distanciaPercorrida);
+        hash *= prime + horasDormidas;
+        hash *= prime + Float.hashCode(massaEmKg);
+        hash *= prime + qtdMembros;
+        hash *= prime + Float.hashCode(velocidadeMaxima);
+
+        if (hash < 0) hash = -hash;
+
+        return hash;
     }
-    
+
     @Override
     public String toString() {
-        return "{" +
-                "\"animalTerreste\":\"" + animalTerreste + "\"," +
-                "\"habitatTerrestre\":\"" + habitatTerrestre + "\"," +
-                "\"nome\":\"" + nome + "\"," +
-                "\"idade\":" + idade + "," +
-                "\"qtdMembros\":" + qtdMembros + "," +
-                "\"comidaIngerida\":\"" + comidaIngerida + "\"," +
-                "\"distanciaPercorrida\":" + distanciaPercorrida + "," +
-                "\"horasDormidas\":" + horasDormidas +
+        return "{\n" +
+                "  \"animalTerreste\": \"" + animalTerreste + "\",\n" +
+                "  \"habitatTerrestre\": \"" + habitatTerrestre + "\",\n" +
+                "  \"nome\": \"" + nome + "\",\n" +
+                "  \"idade\": " + idade + ",\n" +
+                "  \"qtdMembros\": " + qtdMembros + ",\n" +
+                "  \"comidaIngerida\": \"" + comidaIngerida + "\",\n" +
+                "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
+                "  \"horasDormidas\": " + horasDormidas + "\n" +
                 "}";
     }
 }

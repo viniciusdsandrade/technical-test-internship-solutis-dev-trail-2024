@@ -6,6 +6,7 @@ package classes_abstratas;
     Não. Então criem uma classe abstrata AnimalMarinhoAB, AnimalVoadorAB, AnimalTerrestreAB que implementa a classe abstrata AnimalAB
     para representar a classe abstrata para animais marinhos e aéreos “que voam”.
  */
+
 public abstract class AnimalAB implements AnimalIF {
 
     protected String nome;
@@ -22,8 +23,8 @@ public abstract class AnimalAB implements AnimalIF {
     public AnimalAB(String nome,
                     int idade,
                     float massaEmKg) {
-        if (nome == null || nome.trim().isEmpty())
-            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+
+        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
         if (idade < 0) throw new IllegalArgumentException("Idade não pode ser negativa.");
         if (massaEmKg <= 0) throw new IllegalArgumentException("Massa deve ser maior que zero.");
 
@@ -57,23 +58,18 @@ public abstract class AnimalAB implements AnimalIF {
     public float getComidaIngerida() {
         return comidaIngerida;
     }
-
     public String getNome() {
         return nome;
     }
-
     public int getIdade() {
         return idade;
     }
-
     public float getMassaEmKg() {
         return massaEmKg;
     }
-
     public float getDistanciaPercorrida() {
         return distanciaPercorrida;
     }
-
     public int getHorasDormidas() {
         return horasDormidas;
     }
@@ -82,13 +78,10 @@ public abstract class AnimalAB implements AnimalIF {
         if (idade < 0) throw new IllegalArgumentException("Idade não pode ser negativa.");
         this.idade = idade;
     }
-
     public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty())
-            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
         this.nome = nome;
     }
-
     public void setMassaEmKg(float massaEmKg) {
         if (massaEmKg <= 0) throw new IllegalArgumentException("Massa deve ser maior que zero.");
         this.massaEmKg = massaEmKg;

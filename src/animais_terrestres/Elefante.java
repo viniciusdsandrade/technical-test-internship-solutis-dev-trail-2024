@@ -55,6 +55,6 @@ public class Elefante extends AnimalTerresteAB {
                 "  \"comidaIngerida\": " + getComidaIngerida() + ",\n" +
                 "  \"distanciaPercorrida\": " + getDistanciaPercorrida() + ",\n" +
                 "  \"horasDormidas\": " + getHorasDormidas() + "\n" +
-                "}";
+                "}\n";
     }
 }

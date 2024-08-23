@@ -11,7 +11,6 @@ public abstract class AnimalVoadorAB extends AnimalAB {
     protected AnimalAereo animalAereo;
     protected HabitatsAereos habitatAereo;
 
-
     // Características específicas dos animais voadores
     protected float velocidadeMaxima;
     protected float envergadura;
@@ -25,8 +24,6 @@ public abstract class AnimalVoadorAB extends AnimalAB {
     protected int horasDormidas;
     protected float massaEmKg;
 
-
-
     public AnimalVoadorAB() {
     }
 
@@ -37,6 +34,7 @@ public abstract class AnimalVoadorAB extends AnimalAB {
                           float envergadura,
                           float altitudeMaxima,
                           float massaEmKg) {
+
         this.habitatAereo = habitatAereo;
         this.nome = nome;
         this.idade = idade;
@@ -79,21 +77,15 @@ public abstract class AnimalVoadorAB extends AnimalAB {
     }
 
     public void setVelocidadeMaxima(float velocidadeMaxima) {
-        if (velocidadeMaxima <= 0) {
-            throw new IllegalArgumentException("A velocidade máxima deve ser positiva.");
-        }
+        if (velocidadeMaxima <= 0) throw new IllegalArgumentException("A velocidade máxima deve ser positiva.");
         this.velocidadeMaxima = velocidadeMaxima;
     }
     public void setAltitudeMaxima(float altitudeMaxima) {
-        if (altitudeMaxima <= 0) {
-            throw new IllegalArgumentException("A altitude máxima deve ser positiva.");
-        }
+        if (altitudeMaxima <= 0) throw new IllegalArgumentException("A altitude máxima deve ser positiva.");
         this.altitudeMaxima = altitudeMaxima;
     }
     public void setEnvergadura(float envergadura) {
-        if (envergadura <= 0) {
-            throw new IllegalArgumentException("A envergadura deve ser positiva.");
-        }
+        if (envergadura <= 0) throw new IllegalArgumentException("A envergadura deve ser positiva.");
         this.envergadura = envergadura;
     }
     public void setHabitatAereo(HabitatsAereos habitatAereo) {
@@ -123,20 +115,24 @@ public abstract class AnimalVoadorAB extends AnimalAB {
 
     @Override
     public int hashCode() {
-        int result = animalAereo.hashCode();
-        result = 31 * result + habitatAereo.hashCode();
-        result = 31 * result + nome.hashCode();
-        result = 31 * result + idade;
-        result = 31 * result + Float.hashCode(comidaIngerida);
-        result = 31 * result + Float.hashCode(distanciaPercorrida);
-        result = 31 * result + horasDormidas;
-        result = 31 * result + Float.hashCode(massaEmKg);
-        result = 31 * result + Float.hashCode(velocidadeMaxima);
-        result = 31 * result + Float.hashCode(envergadura);
-        result = 31 * result + Float.hashCode(altitudeMaxima);
-        return result;
-    }
+        final int prime = 31;
+        int hash = animalAereo.hashCode();
 
+        hash *= prime + habitatAereo.hashCode();
+        hash *= prime + nome.hashCode();
+        hash *= prime + idade;
+        hash *= prime + Float.hashCode(comidaIngerida);
+        hash *= prime + Float.hashCode(distanciaPercorrida);
+        hash *= prime + horasDormidas;
+        hash *= prime + Float.hashCode(massaEmKg);
+        hash *= prime + Float.hashCode(velocidadeMaxima);
+        hash *= prime + Float.hashCode(envergadura);
+        hash *= prime + Float.hashCode(altitudeMaxima);
+
+        if (hash < 0) hash = -hash;
+
+        return hash;
+    }
 
     @Override
     public String toString() {

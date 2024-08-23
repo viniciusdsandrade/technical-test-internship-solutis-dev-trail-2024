@@ -59,6 +59,7 @@ public class Peixe extends AnimalMarinhoAB {
                 "  \"comidaIngerida\": " + comidaIngerida + ",\n" +
                 "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
                 "  \"horasDormidas\": " + horasDormidas + "\n" +
-                "}";
+                " \"agua\": \"" + agua + "\"\n" +
+                "}\n";
     }
 }

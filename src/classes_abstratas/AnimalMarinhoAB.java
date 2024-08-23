@@ -15,9 +15,6 @@ public abstract class AnimalMarinhoAB extends AnimalAB {
     // Características comuns a todos os tipos de animais (getters e setters definidos na classe AnimalAB)
     protected String nome;
     protected int idade;
-
-
-
     protected float comidaIngerida;
     protected float distanciaPercorrida;
     protected int horasDormidas;
@@ -36,6 +33,7 @@ public abstract class AnimalMarinhoAB extends AnimalAB {
                            float profundidadeMaxima,
                            float massaEmKg,
                            Agua agua) {
+
         this.habitatAquatico = habitatAquatico;
         this.nome = nome;
         this.idade = idade;
@@ -63,37 +61,30 @@ public abstract class AnimalMarinhoAB extends AnimalAB {
     public HabitatAquatico getHabitatAquatico() {
         return habitatAquatico;
     }
-
-    public void setHabitatAquatico(HabitatAquatico habitatAquatico) {
-        this.habitatAquatico = habitatAquatico;
-    }
-
     public AnimalAquatico getAnimalAquatico() {
         return animalAquatico;
     }
-
-    public void setAnimalAquatico(AnimalAquatico animalAquatico) {
-        this.animalAquatico = animalAquatico;
-    }
-
     public float getProfundidadeMaxima() {
         return profundidadeMaxima;
     }
-
-    public void setProfundidadeMaxima(float profundidadeMaxima) {
-        if (profundidadeMaxima <= 0)
-            throw new IllegalArgumentException("Profundidade máxima deve ser maior que zero.");
-
-        this.profundidadeMaxima = profundidadeMaxima;
-    }
-
     public Agua getAgua() {
         return agua;
     }
 
+    public void setHabitatAquatico(HabitatAquatico habitatAquatico) {
+        this.habitatAquatico = habitatAquatico;
+    }
+    public void setProfundidadeMaxima(float profundidadeMaxima) {
+        if (profundidadeMaxima <= 0) throw new IllegalArgumentException("Profundidade máxima deve ser maior que zero.");
+        this.profundidadeMaxima = profundidadeMaxima;
+    }
+    public void setAnimalAquatico(AnimalAquatico animalAquatico) {
+        this.animalAquatico = animalAquatico;
+    }
     public void setAgua(Agua agua) {
         this.agua = agua;
     }
+
 
     @Override
     public final boolean equals(Object o) {
@@ -114,30 +105,35 @@ public abstract class AnimalMarinhoAB extends AnimalAB {
 
     @Override
     public int hashCode() {
-        int result = animalAquatico.hashCode();
-        result = 31 * result + habitatAquatico.hashCode();
-        result = 31 * result + nome.hashCode();
-        result = 31 * result + idade;
-        result = 31 * result + Float.hashCode(comidaIngerida);
-        result = 31 * result + Float.hashCode(distanciaPercorrida);
-        result = 31 * result + horasDormidas;
-        result = 31 * result + Float.hashCode(massaEmKg);
-        result = 31 * result + Float.hashCode(profundidadeMaxima);
-        result = 31 * result + agua.hashCode();
-        return result;
+        final int prime = 31;
+        int hash = animalAquatico.hashCode();
+
+        hash *= prime + habitatAquatico.hashCode();
+        hash *= prime + nome.hashCode();
+        hash *= prime + idade;
+        hash *= prime + Float.hashCode(comidaIngerida);
+        hash *= prime + Float.hashCode(distanciaPercorrida);
+        hash *= prime + horasDormidas;
+        hash *= prime + Float.hashCode(massaEmKg);
+        hash *= prime + Float.hashCode(profundidadeMaxima);
+        hash *= prime + agua.hashCode();
+
+        if (hash < 0) hash = -hash;
+
+        return hash;
     }
 
     @Override
     public String toString() {
-        return "{" +
-                "\"animalAquatico\":\"" + animalAquatico + "\"," +
-                "\"habitatAquatico\":\"" + habitatAquatico + "\"," +
-                "\"nome\":\"" + nome + "\"," +
-                "\"idade\":" + idade + "," +
-                "\"profundidadeMaxima\":" + profundidadeMaxima + "," +
-                "\"comidaIngerida\":" + comidaIngerida + "," +
-                "\"distanciaPercorrida\":" + distanciaPercorrida + "," +
-                "\"horasDormidas\":" + horasDormidas +
+        return "{\n" +
+                "  \"animalAquatico\": \"" + animalAquatico + "\",\n" +
+                "  \"habitatAquatico\": \"" + habitatAquatico + "\",\n" +
+                "  \"nome\": \"" + nome + "\",\n" +
+                "  \"idade\": " + idade + ",\n" +
+                "  \"profundidadeMaxima\": " + profundidadeMaxima + ",\n" +
+                "  \"comidaIngerida\": " + comidaIngerida + ",\n" +
+                "  \"distanciaPercorrida\": " + distanciaPercorrida + ",\n" +
+                "  \"horasDormidas\": " + horasDormidas + "\n" +
                 "}";
     }
 }
