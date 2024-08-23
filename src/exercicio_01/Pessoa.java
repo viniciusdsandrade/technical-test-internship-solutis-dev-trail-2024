@@ -11,7 +11,8 @@ package exercicio_01;
         String endereço;
         String telefone;
 */
-public class Pessoa {
+
+public class Pessoa implements Cloneable {
 
     private String nome;
     private String endereco;
@@ -25,38 +26,58 @@ public class Pessoa {
     }
 
     public Pessoa(String nome, String endereco) {
-        this.nome = nome;
-        this.endereco = endereco;
+        this.setNome(nome);
+        this.setEndereco(endereco);
     }
 
     public Pessoa(String nome, String endereco, String telefone) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.telefone = telefone;
+        this.setNome(nome);
+        this.setEndereco(endereco);
+        this.setTelefone(telefone);
     }
 
     public String getNome() {
         return nome;
     }
-
     public String getEndereco() {
         return endereco;
     }
-
     public String getTelefone() {
         return telefone;
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+        }
         this.nome = nome;
     }
-
     public void setEndereco(String endereco) {
+        if (endereco == null || endereco.trim().isEmpty())
+            throw new IllegalArgumentException("Endereço não pode ser nulo ou vazio.");
         this.endereco = endereco;
     }
-
     public void setTelefone(String telefone) {
+        if (!telefone.matches("\\(\\d{2}\\) \\d{4,5}-\\d{4}"))
+            throw new IllegalArgumentException("Telefone deve estar no formato (XX) XXXXX-XXXX.");
         this.telefone = telefone;
+    }
+
+    // Construtor de cópia
+    public Pessoa(Pessoa copia) {
+        this.nome = copia.nome;
+        this.endereco = copia.endereco;
+        this.telefone = copia.telefone;
+    }
+
+    @Override
+    public Object clone() {
+        Pessoa clone = null;
+        try {
+            clone = new Pessoa(this);
+        } catch (Exception ignored) {
+        }
+        return clone;
     }
 
     @Override
@@ -89,9 +110,9 @@ public class Pessoa {
     @Override
     public String toString() {
         return "{\n" +
-                "\"nome\": \"" + nome + "\",\n" +
-                "\"endereco\": \"" + endereco + "\",\n" +
-                "\"telefone\": \"" + telefone + "\"\n" +
+                "\t\"nome\": \"" + nome + "\",\n" +
+                "\t\"endereco\": \"" + endereco + "\",\n" +
+                "\t\"telefone\": \"" + telefone + "\"\n" +
                 "}\n";
     }
 }

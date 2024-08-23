@@ -11,12 +11,11 @@ import exercicio_03.Empregado;
     Escreva um programa de teste adequado para esta classe.
  */
 
-public class Administrador extends Empregado {
+public class Administrador extends Empregado implements Cloneable {
 
     private double ajudaDeCusto;
 
     public Administrador() {
-        super();
     }
 
     public Administrador(String nome,
@@ -25,7 +24,7 @@ public class Administrador extends Empregado {
                          double imposto,
                          double ajudaDeCusto) {
         super(nome, codigoSetor, salarioBase, imposto);
-        this.ajudaDeCusto = ajudaDeCusto;
+        this.setAjudaDeCusto(ajudaDeCusto);
     }
 
     public Administrador(String nome,
@@ -35,7 +34,7 @@ public class Administrador extends Empregado {
                          double imposto,
                          double ajudaDeCusto) {
         super(nome, endereco, codigoSetor, salarioBase, imposto);
-        this.ajudaDeCusto = ajudaDeCusto;
+        this.setAjudaDeCusto(ajudaDeCusto);
     }
 
     public Administrador(String nome,
@@ -46,7 +45,7 @@ public class Administrador extends Empregado {
                          double imposto,
                          double ajudaDeCusto) {
         super(nome, endereco, telefone, codigoSetor, salarioBase, imposto);
-        this.ajudaDeCusto = ajudaDeCusto;
+        this.setAjudaDeCusto(ajudaDeCusto);
     }
 
     public double getAjudaDeCusto() {
@@ -54,7 +53,23 @@ public class Administrador extends Empregado {
     }
 
     public void setAjudaDeCusto(double ajudaDeCusto) {
+        if (ajudaDeCusto < 0) throw new IllegalArgumentException("A ajuda de custo não pode ser negativa.");
         this.ajudaDeCusto = ajudaDeCusto;
+    }
+
+    public Administrador(Administrador administrador) {
+        super(administrador);
+        this.ajudaDeCusto = administrador.ajudaDeCusto;
+    }
+
+    @Override
+    public Object clone() {
+        Administrador clone = null;
+        try {
+            clone = new Administrador(this);
+        } catch (Exception ignored) {
+        }
+        return clone;
     }
 
     @Override
@@ -89,14 +104,14 @@ public class Administrador extends Empregado {
     @Override
     public String toString() {
         return "{\n" +
-                "\"nome\": \"" + getNome() + "\",\n" +
-                "\"endereco\": \"" + getEndereco() + "\",\n" +
-                "\"telefone\": \"" + getTelefone() + "\",\n" +
-                "\"codigoSetor\": " + getCodigoSetor() + ",\n" +
-                "\"salarioBase\": " + getSalarioBase() + ",\n" +
-                "\"imposto\": " + getImposto() + ",\n" +
-                "\"ajudaDeCusto\": " + getAjudaDeCusto() + ",\n" +
-                "\"salarioLiquido\": " + calcularSalario() + "\n" +
+                "\t\"nome\": \"" + getNome() + "\",\n" +
+                "\t\"endereco\": \"" + getEndereco() + "\",\n" +
+                "\t\"telefone\": \"" + getTelefone() + "\",\n" +
+                "\t\"codigoSetor\": " + getCodigoSetor() + ",\n" +
+                "\t\"salarioBase\": " + getSalarioBase() + ",\n" +
+                "\t\"imposto\": " + getImposto() + ",\n" +
+                "\t\"ajudaDeCusto\": " + getAjudaDeCusto() + ",\n" +
+                "\t\"salarioLiquido\": " + calcularSalario() + "\n" +
                 "}\n";
     }
 }

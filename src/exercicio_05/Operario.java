@@ -1,5 +1,7 @@
 package exercicio_05;
 
+import exercicio_03.Empregado;
+
 /*
     Implemente a classe Operario como subclasse da classe Empregado.
     Um determinado operário tem como atributos, para além dos atributos da classe Pessoa e da classe Empregado,
@@ -10,14 +12,12 @@ package exercicio_05;
     Escreva um programa de teste adequado para esta classe.
  */
 
-import exercicio_03.Empregado;
+public class Operario extends Empregado implements Cloneable {
 
-public class Operario extends Empregado {
     private double valorProducao;
     private double comissao;
 
     public Operario() {
-        super();
     }
 
     public Operario(String nome,
@@ -27,8 +27,8 @@ public class Operario extends Empregado {
                     double valorProducao,
                     double comissao) {
         super(nome, codigoSetor, salarioBase, imposto);
-        this.valorProducao = valorProducao;
-        this.comissao = comissao;
+        this.setValorProducao(valorProducao);
+        this.setComissao(comissao);
     }
 
     public Operario(String nome,
@@ -39,8 +39,8 @@ public class Operario extends Empregado {
                     double valorProducao,
                     double comissao) {
         super(nome, endereco, codigoSetor, salarioBase, imposto);
-        this.valorProducao = valorProducao;
-        this.comissao = comissao;
+        this.setValorProducao(valorProducao);
+        this.setComissao(comissao);
     }
 
     public Operario(String nome,
@@ -49,31 +49,50 @@ public class Operario extends Empregado {
                     int codigoSetor,
                     double salarioBase,
                     double imposto,
-                    double valorProducao, double comissao) {
+                    double valorProducao,
+                    double comissao) {
         super(nome, endereco, telefone, codigoSetor, salarioBase, imposto);
-        this.valorProducao = valorProducao;
-        this.comissao = comissao;
+        this.setValorProducao(valorProducao);
+        this.setComissao(comissao);
     }
 
     public double getValorProducao() {
         return valorProducao;
     }
 
-    public void setValorProducao(double valorProducao) {
-        this.valorProducao = valorProducao;
-    }
-
     public double getComissao() {
         return comissao;
     }
 
+    public void setValorProducao(double valorProducao) {
+        if (valorProducao < 0) throw new IllegalArgumentException("O valor de produção não pode ser negativo.");
+        this.valorProducao = valorProducao;
+    }
+
     public void setComissao(double comissao) {
+        if (comissao < 0) throw new IllegalArgumentException("A comissão não pode ser negativa.");
         this.comissao = comissao;
     }
 
     @Override
     public double calcularSalario() {
         return super.calcularSalario() + (valorProducao * comissao / 100);
+    }
+
+    public Operario(Operario copia) {
+        super(copia);
+        this.valorProducao = copia.valorProducao;
+        this.comissao = copia.comissao;
+    }
+
+    @Override
+    public Object clone() {
+        Operario clone = null;
+        try {
+            clone = new Operario(this);
+        } catch (Exception ignored) {
+        }
+        return clone;
     }
 
     @Override
@@ -105,15 +124,15 @@ public class Operario extends Empregado {
     @Override
     public String toString() {
         return "{\n" +
-                "\"nome\":\"" + getNome() + "\"," +
-                "\"endereco\":\"" + getEndereco() + "\"," +
-                "\"telefone\":\"" + getTelefone() + "\"," +
-                "\"codigoSetor\":" + getCodigoSetor() + "," +
-                "\"salarioBase\":" + getSalarioBase() + "," +
-                "\"imposto\":" + getImposto() + "," +
-                "\"valorProducao\":" + getValorProducao() + "," +
-                "\"comissao\":" + getComissao() + "," +
-                "\"salarioTotal\":" + calcularSalario() +
+                "\t\"nome\": \"" + getNome() + "\",\n" +
+                "\t\"endereco\": \"" + getEndereco() + "\",\n" +
+                "\t\"telefone\": \"" + getTelefone() + "\",\n" +
+                "\t\"codigoSetor\": " + getCodigoSetor() + ",\n" +
+                "\t\"salarioBase\": " + getSalarioBase() + ",\n" +
+                "\t\"imposto\": " + getImposto() + ",\n" +
+                "\t\"valorProducao\": " + getValorProducao() + ",\n" +
+                "\t\"comissao\": " + getComissao() + ",\n" +
+                "\t\"salarioTotal\": " + calcularSalario() + "\n" +
                 "}\n";
     }
 }
